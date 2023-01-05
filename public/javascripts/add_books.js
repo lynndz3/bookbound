@@ -27,3 +27,42 @@ function clearModal() {
     genreField.parentElement.classList.remove('error');
     raterField.parentElement.classList.remove('error');
   }
+
+let modalFooter = document.querySelector('.modal-footer');
+submitBookButton.addEventListener('click', function() {
+    if (validate() == true) {
+        let p = document.createElement('p');
+        p.textContent = "Woohoo! Saving your book! One sec...";
+        p.style.color = 'green';
+        modalFooter.appendChild(p);
+    }
+  })
+
+  function setErrorFor(input, message) {
+    let formControl = input.parentElement;
+    formControl.className = "mb-2 error";
+    let small = formControl.querySelector("small");
+    small.innerHTML = message;
+  }
+  
+const validate = () => {
+    if (titleField.value.trim() === "" ||
+        authorField.value.trim() === "" ||
+        genreField.value === "none" ||
+        raterField.value === "none") {
+          if (titleField.value.trim() === "") {
+            setErrorFor(titleField, "Title can't be blank");
+          }
+          if (authorField.value.trim() === "") {
+            setErrorFor(authorField, "Give the writer some credit here");
+          }
+          if (genreField.value === "") {
+            setErrorFor(genreField, "Genres are hard, but give it your best shot");
+          }
+          if (raterField.value === "") {
+            setErrorFor(raterField, "Go with your gut");
+        }
+        return false;
+    }
+    else return true;
+  }

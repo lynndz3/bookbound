@@ -8,4 +8,6 @@ router.get('/', user_controller.user_list);
 
 router.get("/:id", user_controller.user_books);
 
+router.post("/:id", user_controller.user_book_create);
+
 module.exports = router;
