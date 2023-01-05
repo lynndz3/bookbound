@@ -1,0 +1,84 @@
+.header {
+  text-align: left;
+  margin-left: 0;
+}
+
+.navbar-brand {
+  font-family: 'Marhey';
+}
+
+.navbar {
+  padding-top: 1%;
+}
+
+#addBook {
+  width: 150px;
+  display: inline-block;
+  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+  background-color: antiquewhite;
+  color: #1d1d1d;
+  font-weight: 600;
+  border:none;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  -webkit-moz-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+
+#addBook:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2) !important;
+  -webkit-moz-transform: translate(0px, -10px) scale(1.2) !important;
+  transform: translate(0px, -10px) scale(1.2) !important;
+}
+
+.table-row {
+  margin-top: 4%;
+}
+
+/* erroring on modals */
+small {
+  color: #e75c3c;
+  margin-top: 5px;
+  visibility: hidden;
+}
+
+.mb-2.error small {
+  visibility: visible;
+}
+
+.mb-2.error input {
+  border-color: #e75c3c;
+}
+
+.addBookButton {
+  margin-left: auto;
+}
+
+.reader-name {
+  font-size: 1.5rem;
+  color: rgb(243, 159, 56);
+  font-weight: 800;
+}
+
+.outline {
+  border: solid rgb(243, 159, 56);
+  background-color: rgb(243, 159, 56);
+  padding: 7px;
+}
+
+.num-books {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  color: rgb(243, 159, 56);
+  font-size: 1rem;
+  font-weight: 600px;
+}
+
+.label-num-books {
+  color: white;
+  font-size: 1rem;
+}

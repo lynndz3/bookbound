@@ -1,0 +1,73 @@
+extends layout
+
+block content
+ .container
+  .mt-4.button-row.d-flex.align-items-center
+    .reader-name READER NAME
+    .outline.d-flex.align-items-center.ms-4
+      .label-num-books.me-2 # Books:
+      .num-books 0
+    .addBookButton
+      button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
+  .row.table-row
+    table#favoriteBooks.table.table-striped
+      thead
+        tr
+          th(scope='col') Title
+          th(scope='col') Author
+          th(scope='col') Genre
+          th(scope='col') Rating
+          th(scope='col') Own copy
+      tbody
+        tr
+          td The Orphan Master&apos;s Son
+          td Adam Johnson
+          td Historical Fiction
+          td 5: all-time favorite
+          td ✅
+  #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#exampleModalLabel.modal-title New Book
+                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            .modal-body
+                form
+                .mb-2
+                    label.form-label(for='title') Book Title
+                    input#title.form-control(type='text')
+                    small No Error
+                .mb-2
+                    label.form-label(for='author') Author
+                    input#author.form-control(type='text')
+                    small No Error
+                .mb-2
+                    label.form-label(for='genre') Genre
+                    select#genre.form-select(aria-label='Select genre')
+                        option(value='none') select genre
+                        option(value='scifi') SciFi/Fantasy
+                        option(value='mystery') Mystery/Crime
+                        option(value='short') Short Stories
+                        option(value='historical') Historical Fiction
+                        option(value='beach') Beach Read
+                        option(value='fiction') Fiction (general)
+                        option(value='memoir') Non-Fiction, Memoir
+                        option(value='learning') Learning/Fact-Based
+                    small No Error
+                .mb-2.rating-question
+                    label.form-label(for='rating') Rating
+                    select#rating.form-select(aria-label='Your rating')
+                        option(value='none') Your rating
+                        option(value='1') 1: don&apos;t bother
+                        option(value='2') 2: just ok
+                        option(value='3') 3: pretty good
+                        option(value='4') 4: really enjoyed
+                        option(value='5') 5: all-time favorite
+                    small No Error
+                .mb-2.form-check
+                    input#ownit.form-check-input(type='checkbox')
+                    label.form-check-label(for='ownit')
+                    | Own a hard copy?
+                .modal-footer
+                    button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
+                    button#submit-book.btn.btn-primary(type='button') Submit

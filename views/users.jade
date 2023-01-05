@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 See all users here!
+  p Find your friends: 
+
+  ul 
+    li !{data.user_count}
+  p #{data.user_detail.first_name}
