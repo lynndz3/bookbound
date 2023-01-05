@@ -1,4 +1,5 @@
 const User = require("../models/users");
+const Books = require("../models/books");
 
 const async = require("async");
 
@@ -22,6 +23,17 @@ exports.user_list = (req, res) => {
 };
 
 exports.user_books = (req, res) => {
-    res.render("bookreviews");
+    async.parallel (
+        {
+            book_count(callback) {
+                Books.countDocuments({}, callback);
+            }
+        },
+        (err, results) => {
+            res.render("bookreviews", {
+                error: err,
+                data: results
+            })
+        })
     // res.send(`once implemented, you'll see all my books for: ${req.params.id}`);
 };
