@@ -19,10 +19,11 @@ block content
           th(scope='col') Rating
           th(scope='col') Own copy
       tbody
+       each book in data.book_detail
         tr
-          td The Orphan Master&apos;s Son
-          td Adam Johnson
-          td Historical Fiction
+          td #{book.title}
+          td #{book.author}
+          td #{book.genre}
           td 5: all-time favorite
           td ✅
   #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
@@ -32,42 +33,42 @@ block content
                 h5#exampleModalLabel.modal-title New Book
                 button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body
-                form
+              form(method='POST' action='')
                 .mb-2
                     label.form-label(for='title') Book Title
-                    input#title.form-control(type='text')
+                    input#title.form-control(type='text', name='title')
                     small No Error
                 .mb-2
                     label.form-label(for='author') Author
-                    input#author.form-control(type='text')
+                    input#author.form-control(type='text', name='author')
                     small No Error
                 .mb-2
                     label.form-label(for='genre') Genre
-                    select#genre.form-select(aria-label='Select genre')
-                        option(value='none') select genre
-                        option(value='scifi') SciFi/Fantasy
-                        option(value='mystery') Mystery/Crime
-                        option(value='short') Short Stories
-                        option(value='historical') Historical Fiction
-                        option(value='beach') Beach Read
-                        option(value='fiction') Fiction (general)
-                        option(value='memoir') Non-Fiction, Memoir
-                        option(value='learning') Learning/Fact-Based
+                    select#genre.form-select(aria-label='Select genre', name='genre')
+                        option(value='') select genre
+                        option(value='SciFi/Fantasy') SciFi/Fantasy
+                        option(value='Mystery/Crime') Mystery/Crime
+                        option(value='Short Stories') Short Stories
+                        option(value='Historical Fiction') Historical Fiction
+                        option(value='Beach Read') Beach Read
+                        option(value='Fiction (general)') Fiction (general)
+                        option(value='Non-Fiction, Memoir') Non-Fiction, Memoir
+                        option(value='Learning/Fact-Based') Learning/Fact-Based
                     small No Error
                 .mb-2.rating-question
                     label.form-label(for='rating') Rating
-                    select#rating.form-select(aria-label='Your rating')
-                        option(value='none') Your rating
-                        option(value='1') 1: don&apos;t bother
-                        option(value='2') 2: just ok
-                        option(value='3') 3: pretty good
-                        option(value='4') 4: really enjoyed
-                        option(value='5') 5: all-time favorite
+                    select#rating.form-select(aria-label='Your rating', name='rating')
+                        option(value='') Your rating
+                        option(value="1: don/'t bother") 1: don&apos;t bother
+                        option(value='2: just ok') 2: just ok
+                        option(value='3: pretty good') 3: pretty good
+                        option(value='4: really enjoyed') 4: really enjoyed
+                        option(value='5: all-time fave') 5: all-time favorite
                     small No Error
                 .mb-2.form-check
-                    input#ownit.form-check-input(type='checkbox')
+                    input#ownit.form-check-input(type='checkbox', name='ownit')
                     label.form-check-label(for='ownit')
                     | Own a hard copy?
                 .modal-footer
                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
-                    button#submit-book.btn.btn-primary(type='button') Submit
+                    button#submit-book.btn.btn-primary(type='submit') Submit
