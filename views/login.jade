@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Login
+  form(action='' method='POST')
+    label(for='username') Username
+    input(name='username' placeholder='username' type='text')
+    label(for='password') Password
+    input(name='password' type='password')
+    button Login
+
+  h1 Login with Google
+  a.button.google(href='/create-account/login/google') Log in with Google

@@ -1,9 +1,8 @@
 extends layout
 
 block content
-  h1 See all users here!
-  p Find your friends: 
+  a.span(href='/readers/:id') Your dashboard
+  h1 Find inspiration from your friends
 
   ul 
-    li #{data.user_count}
-  p #{data.user_detail.first_name}
+    li #{user.first_name}
