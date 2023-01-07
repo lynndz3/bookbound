@@ -10,21 +10,20 @@ exports.user_list = (req, res) => {
         {
             user_count(callback) {
                 User.countDocuments({}, callback);
-            },
-            user_detail(callback) {
-                User.findOne({}, {first_name: 1, _id: 0}, callback);
             }
         },
         (err, results) => {
             res.render("users", {
                 error: err,
                 data: results,
+                user: req.user
             });
         }
     );
 };
 
 exports.user_books = (req, res) => {
+    const user = req.user;
     async.parallel (
         {
             book_count(callback) {
@@ -36,6 +35,7 @@ exports.user_books = (req, res) => {
         },
         (err, results) => {
             res.render("bookreviews", {
+                user: user,
                 error: err,
                 data: results
             })
