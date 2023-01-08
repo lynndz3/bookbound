@@ -3,12 +3,15 @@ extends layout
 block content
  .container
   .mt-4.button-row.d-flex.align-items-center
-    .reader-name #{user.first_name}
+    .reader-name #{data.reader_name}
     .outline.d-flex.align-items-center.ms-4
       .label-num-books.me-2 # Books:
       .num-books #{data.book_count}
-    .addBookButton
-      button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
+    if user
+     if user.userId == id
+      .addBookButton
+        button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
+      
   .row.table-row
     table#favoriteBooks.table.table-striped
       thead
@@ -19,19 +22,19 @@ block content
           th(scope='col') Rating
           th(scope='col') Own copy
       tbody
-       each book in data.book_detail
+      each book in data.book_detail
         tr
-          td #{book.title}
-          td #{book.author}
-          td #{book.genre}
-          td 5: all-time favorite
-          td ✅
+          td #{book.bookinfo[0].title}
+          td #{book.bookinfo[0].author}
+          td #{book.bookinfo[0].genre}
+          td #{book.rating}
+          td= book.own_copy ? '✅' : '❌'
   #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
     .modal-dialog
         .modal-content
             .modal-header
-                h5#exampleModalLabel.modal-title New Book
-                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                  h5#exampleModalLabel.modal-title New Book
+                  button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body
               form(method='POST' action='')
                 .mb-2
@@ -59,7 +62,7 @@ block content
                     label.form-label(for='rating') Rating
                     select#rating.form-select(aria-label='Your rating', name='rating')
                         option(value='') Your rating
-                        option(value="1: don/'t bother") 1: don&apos;t bother
+                        option(value="1: dont bother") 1: don&apos;t bother
                         option(value='2: just ok') 2: just ok
                         option(value='3: pretty good') 3: pretty good
                         option(value='4: really enjoyed') 4: really enjoyed
@@ -72,3 +75,5 @@ block content
                 .modal-footer
                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
                     button#submit-book.btn.btn-primary(type='submit') Submit
+
+
