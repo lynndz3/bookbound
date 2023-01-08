@@ -6,8 +6,8 @@ const user_controller = require("../controllers/userController");
 /* GET users listing. */
 router.get('/', user_controller.user_list);
 
-router.get("/:user", user_controller.user_books);
+router.get("/:userId", user_controller.user_books);
 
-router.post("/:id", user_controller.user_book_create);
+router.post("/:userId", user_controller.user_book_create);
 
 module.exports = router;

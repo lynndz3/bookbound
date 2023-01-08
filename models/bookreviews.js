@@ -11,4 +11,4 @@ const BookReviewSchema = new Schema({
     comments: { type: String }
 })
 
-module.exports = mongoose.model("Book", BookSchema);
+module.exports = mongoose.model("Review", BookReviewSchema);

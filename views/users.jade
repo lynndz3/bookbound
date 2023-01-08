@@ -1,8 +1,11 @@
 extends layout
 
 block content
-  a.span(href='/readers/:id') Your dashboard
-  h1 Find inspiration from your friends
-
+  a.span.your-books-link(href='/readers/#{user.userId}') Your Book List
+  h3 Or take a peek at your friends' faves:
   ul 
-    li #{user.first_name}
+    each user in data.user_details
+     - var fullname = `${user.first_name} ${user.last_name}`
+     - var friendUrlPath = `${user.userId}`   
+       li 
+         a(href='/readers/#{friendUrlPath}') #{fullname}

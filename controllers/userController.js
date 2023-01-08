@@ -1,4 +1,5 @@
 const User = require("../models/users");
+const Review = require("../models/bookreviews");
 const Books = require("../models/books");
 const { body, validationResult } = require("express-validator");
 
@@ -10,6 +11,9 @@ exports.user_list = (req, res) => {
         {
             user_count(callback) {
                 User.countDocuments({}, callback);
+            },
+            user_details(callback) {
+                User.find({}, callback);
             }
         },
         (err, results) => {
@@ -23,24 +27,37 @@ exports.user_list = (req, res) => {
 };
 
 exports.user_books = (req, res) => {
-    const user = req.user;
+    const currentUser = req.user;
+    const params = req.params.userId;
     async.parallel (
         {
-            book_count(callback) {
-                Books.countDocuments({}, callback);
+            book_count() {
+                Books.countDocuments({});
             },
-            book_detail(callback) {
-                Books.find({}, callback);
-            }
+            // book_detail() {
+            //     Review.aggregate([
+            //         { $lookup:
+            //             {
+            //                from: "books",
+            //                localField: "book",
+            //                foreignField: "_id",
+            //                as: "bookinfo"
+            //             }
+            //         }
+            //     ])
+            // },
+            // reader_name(callback) {
+            //     User.find({userId: params}, {first_name: 1, last_name: 1}, callback).distinct("first_name");
+            // }
         },
         (err, results) => {
             res.render("bookreviews", {
-                user: user,
+                user: currentUser,
                 error: err,
-                data: results
+                data: results,
+                params: params
             })
         })
-    // res.send(`once implemented, you'll see all my books for: ${req.params.id}`);
 };
 
 exports.user_book_create = [
@@ -55,21 +72,38 @@ exports.user_book_create = [
     body("genre")
         .isLength({min: 1})
         .escape(),
+    body("rating")
+        .isLength({min: 1})
+        .escape(),
 
     async(req, res) => {
         const errors = validationResult(req);
+        const currentUser = req.user;
+        console.log(req.body);
+        console.log(currentUser);
         if (!errors.isEmpty()) return;
         try {
-            const book = new Books({
+                const book = new Books({
                 title: req.body.title,
                 author: req.body.author,
-                id: 3,
                 genre: req.body.genre
             });
-            await book.save();
-            res.redirect('/readers/1');
+            newBook = await book.save();
         } catch (error) {
           res.render('error', {error: error})  
         }
-    },
+        console.log("new book added is " + newBook);
+        try {
+            const review = new Review({
+                book: newBook._id,
+                user: currentUser._id,
+                rating: req.body.rating,
+                own_copy: req.body.ownit
+            })
+            await review.save();
+            res.redirect('/readers/LynnZukerman');
+        } catch (error) {
+            res.render('error', {error: error})
+        }
+    }
 ];
