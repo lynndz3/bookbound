@@ -28,37 +28,74 @@ exports.user_list = (req, res) => {
 
 exports.user_books = (req, res) => {
     const currentUser = req.user;
-    const params = req.params.userId;
-    async.parallel (
+    const params = req.params.id;
+    async.parallel(
         {
-            book_count() {
-                Books.countDocuments({});
-            },
-            // book_detail() {
-            //     Review.aggregate([
-            //         { $lookup:
-            //             {
-            //                from: "books",
-            //                localField: "book",
-            //                foreignField: "_id",
-            //                as: "bookinfo"
-            //             }
-            //         }
-            //     ])
-            // },
-            // reader_name(callback) {
-            //     User.find({userId: params}, {first_name: 1, last_name: 1}, callback).distinct("first_name");
-            // }
+          book_count(callback) {
+              Books.countDocuments({}, callback);
+             },
+             reader_name(callback) {
+                User.find({userId: params}, {first_name: 1, last_name: 1}, callback).distinct("first_name");
+             },
+             book_detail(callback) {
+                Review.aggregate([
+                    { $lookup:
+                        {
+                           from: "books",
+                           localField: "book",
+                           foreignField: "_id",
+                           as: "bookinfo"
+                        }
+                    }
+                ], callback)
+            }
         },
-        (err, results) => {
-            res.render("bookreviews", {
-                user: currentUser,
+        (err, results) =>  {
+            res.render('bookreviews', {
+                id: params, 
+                data: results, 
                 error: err,
-                data: results,
-                params: params
+                user: currentUser
             })
-        })
+        }
+    )
 };
+
+
+// exports.user_books = (req, res) => {
+//     const currentUser = req.user;
+//     const params = req.params.id;
+//     debugger
+//     async.parallel (
+//         {
+//             book_count(callback) {
+//                 Books.countDocuments({}), callback;
+//             },
+//             book_detail() {
+//                 Review.aggregate([
+//                     { $lookup:
+//                         {
+//                            from: "books",
+//                            localField: "book",
+//                            foreignField: "_id",
+//                            as: "bookinfo"
+//                         }
+//                     }
+//                 ])
+//             },
+//             reader_name(callback) {
+//                 User.find({userId: params}, {first_name: 1, last_name: 1}, callback).distinct("first_name");
+//             }
+//         },
+//         (err, results) => {
+//             res.render('bookreviews', {
+//                 user: currentUser,
+//                 error: err,
+//                 data: results,
+//                 id: params
+//             })
+//         }
+//     )};
 
 exports.user_book_create = [
     body("title")
@@ -101,7 +138,7 @@ exports.user_book_create = [
                 own_copy: req.body.ownit
             })
             await review.save();
-            res.redirect('/readers/LynnZukerman');
+            res.redirect('/readers/1');
         } catch (error) {
             res.render('error', {error: error})
         }

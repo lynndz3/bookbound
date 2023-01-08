@@ -3,12 +3,12 @@ extends layout
 block content
  .container
   .mt-4.button-row.d-flex.align-items-center
-    //- .reader-name #{data.reader_name}
+    .reader-name #{data.reader_name}
     .outline.d-flex.align-items-center.ms-4
       .label-num-books.me-2 # Books:
       .num-books #{data.book_count}
     if user
-     if user.userId == params
+     if user.userId == id
       .addBookButton
         button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
       
@@ -22,13 +22,20 @@ block content
           th(scope='col') Rating
           th(scope='col') Own copy
       tbody
-      //-each book in data.book_detail
+      each book in data.book_detail
         tr
-          td hi
-          td hi
-          td hi
-          td hi
+         if book.ownit
+          td #{book.bookinfo[0].title}
+          td #{book.bookinfo[0].author}
+          td #{book.bookinfo[0].genre}
+          td #{book.rating}
           td ✅
+         else
+          td #{book.bookinfo[0].title}
+          td #{book.bookinfo[0].author}
+          td #{book.bookinfo[0].genre}
+          td #{book.rating}
+          td ❌
   #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
     .modal-dialog
         .modal-content
@@ -77,6 +84,3 @@ block content
                     button#submit-book.btn.btn-primary(type='submit') Submit
 
 
-        //-   td #{book.bookinfo[0].title}
-        //-   td #{book.bookinfo[0].author}
-        //-   td #{book.bookinfo[0].genre}
