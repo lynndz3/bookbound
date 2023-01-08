@@ -24,18 +24,11 @@ block content
       tbody
       each book in data.book_detail
         tr
-         if book.ownit
           td #{book.bookinfo[0].title}
           td #{book.bookinfo[0].author}
           td #{book.bookinfo[0].genre}
           td #{book.rating}
-          td ✅
-         else
-          td #{book.bookinfo[0].title}
-          td #{book.bookinfo[0].author}
-          td #{book.bookinfo[0].genre}
-          td #{book.rating}
-          td ❌
+          td= book.own_copy ? '✅' : '❌'
   #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
     .modal-dialog
         .modal-content
@@ -69,7 +62,7 @@ block content
                     label.form-label(for='rating') Rating
                     select#rating.form-select(aria-label='Your rating', name='rating')
                         option(value='') Your rating
-                        option(value="1: don/'t bother") 1: don&apos;t bother
+                        option(value="1: dont bother") 1: don&apos;t bother
                         option(value='2: just ok') 2: just ok
                         option(value='3: pretty good') 3: pretty good
                         option(value='4: really enjoyed') 4: really enjoyed
