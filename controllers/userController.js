@@ -3,7 +3,6 @@ const Review = require("../models/bookreviews");
 const Books = require("../models/books");
 const { body, validationResult } = require("express-validator");
 
-
 const async = require("async");
 
 exports.user_list = (req, res) => {
@@ -121,10 +120,11 @@ exports.user_book_create = [
                 book: newBook._id,
                 user: currentUser._id,
                 rating: req.body.rating,
-                own_copy: req.body.ownit
+                own_copy: req.body.ownit,
+                comments: req.body.comments
             })
             await review.save();
-            res.redirect('/readers/1');
+            res.redirect(`/readers/${req.params.id}`);
         } catch (error) {
             res.render('error', {error: error})
         }
