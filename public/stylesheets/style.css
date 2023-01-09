@@ -141,3 +141,11 @@ small {
       0 2px 4px rgba(0, 0, 0, .25),
       0 0 0 3px #c8dafc;
   }
+
+  .hero-img {
+    text-align: center;
+  }
+
+  .homepage-container {
+    padding-top: 72px;
+  }

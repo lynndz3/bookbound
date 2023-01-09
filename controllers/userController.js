@@ -31,9 +31,6 @@ exports.user_books = (req, res) => {
     const params = req.params.id;
     async.parallel(
         {
-          book_count(callback) {
-              Books.countDocuments({}, callback);
-             },
              reader_name(callback) {
                 User.find({userId: params}, {first_name: 1, last_name: 1}, callback).distinct("first_name");
              },
@@ -46,11 +43,36 @@ exports.user_books = (req, res) => {
                            foreignField: "_id",
                            as: "bookinfo"
                         }
+                    },
+                    { $lookup:
+                        {
+                           from: "users",
+                           localField: "user",
+                           foreignField: "_id",
+                           as: "userinfo"
+                        }
+                    },
+                    { $match :
+                        {
+                            $and: [{ "userinfo.userId" : Number(params)}] 
+                        }
+                    },
+                    { $project: {
+                        "userinfo.userId": 1,
+                        "bookinfo.title": 1,
+                        "bookinfo.author": 1,
+                        "bookinfo.genre": 1,
+                        rating: 1,
+                        own_copy: 1,
+                        date_added: 1,
+                        comments: 1
+                        }
                     }
                 ], callback)
             }
         },
         (err, results) =>  {
+            console.log(results);
             res.render('bookreviews', {
                 id: params, 
                 data: results, 
@@ -60,42 +82,6 @@ exports.user_books = (req, res) => {
         }
     )
 };
-
-
-// exports.user_books = (req, res) => {
-//     const currentUser = req.user;
-//     const params = req.params.id;
-//     debugger
-//     async.parallel (
-//         {
-//             book_count(callback) {
-//                 Books.countDocuments({}), callback;
-//             },
-//             book_detail() {
-//                 Review.aggregate([
-//                     { $lookup:
-//                         {
-//                            from: "books",
-//                            localField: "book",
-//                            foreignField: "_id",
-//                            as: "bookinfo"
-//                         }
-//                     }
-//                 ])
-//             },
-//             reader_name(callback) {
-//                 User.find({userId: params}, {first_name: 1, last_name: 1}, callback).distinct("first_name");
-//             }
-//         },
-//         (err, results) => {
-//             res.render('bookreviews', {
-//                 user: currentUser,
-//                 error: err,
-//                 data: results,
-//                 id: params
-//             })
-//         }
-//     )};
 
 exports.user_book_create = [
     body("title")

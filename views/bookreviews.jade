@@ -6,7 +6,7 @@ block content
     .reader-name #{data.reader_name}
     .outline.d-flex.align-items-center.ms-4
       .label-num-books.me-2 # Books:
-      .num-books #{data.book_count}
+      .num-books #{data.book_detail.length}
     if user
      if user.userId == id
       .addBookButton
@@ -68,6 +68,9 @@ block content
                         option(value='4: really enjoyed') 4: really enjoyed
                         option(value='5: all-time fave') 5: all-time favorite
                     small No Error
+                .mb-2.form-floating
+                    textarea#comments.form-control(style='min-height: 100px;')
+                    label(for='comments' style='color: grey') Optional comments
                 .mb-2.form-check
                     input#ownit.form-check-input(type='checkbox', name='ownit')
                     label.form-check-label(for='ownit')
@@ -75,5 +78,14 @@ block content
                 .modal-footer
                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
                     button#submit-book.btn.btn-primary(type='submit') Submit
+  #commentsModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+   .modal-dialog
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Comments
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+      .modal-footer
+        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
 
 
