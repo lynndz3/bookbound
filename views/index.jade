@@ -4,9 +4,16 @@ block content
  .d-flex.align-items-center
   .container.homepage-container
    .row
-     .col-lg-6.order-2.justify-content-center.d-flex.flex-column.orger-lg-1.pt-4
-       h1 Life is short. Read great books.
-       h3 Check out your friends' favorites. Share yours. Find your next read. 
-     .col-lg-6.order-1.order-lg-2.hero-img
-       img(src='/images/book_pile.svg' alt='books' style='width: 300px; height: auto')
+     .col-lg-7.order-2.justify-content-center.d-flex.flex-column.orger-lg-1.pt-4
+       h1.headline Your favorite 
+        span.orange books 
+        | . Your favorite 
+        span.orange people
+        | . Here.
+       h3.subheader Life is to too short to read anonymous book reviews. Get book inspired from the people you admire most. 
+       em.subtext-italics (And see if they have a hard copy!)
+     .col-lg-4.order-1.order-lg-2.hero-img.justify-content-center
+       img(src='/images/book_pile.svg' alt='books')
+   .row
+     a.button.login-with-google-btn.homepagelogin(href='/create-account/login/google') Create an Account or Login with Google
 

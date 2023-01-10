@@ -1,5 +1,6 @@
 :root {
   --orange: rgb(243, 154, 46);
+  font-family: 'Marhey';
 }
 
 .header {
@@ -143,9 +144,58 @@ small {
   }
 
   .hero-img {
-    text-align: center;
+    width: 450px;
+    height: auto;
   }
 
   .homepage-container {
     padding-top: 72px;
   }
+
+  .headline {
+    font-size: 4rem;
+    margin-bottom: 5%;
+  }
+
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1300px;
+}
+
+.row {
+  gap: 3%;
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 700px) {
+  .hero-img {
+    width: 80%;
+  }
+  .headline {
+    font-size: 3rem;
+    text-align: center;
+}
+  .homepage-container {
+    padding-top: 10px;
+  }
+  .subheader {
+    margin-top: 10px;
+    text-align: center;
+  }
+  .subtext-italics {
+    text-align: center;
+  }
+}
+
+.subtext-italics {
+  font-size: 1.3rem;
+}
+
+.orange {
+  color: var(--orange);
+}
+
+.homepagelogin {
+  width: 300px;
+  background-color: blue;
+}
