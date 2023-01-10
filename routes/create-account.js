@@ -26,5 +26,4 @@ function(req, res) {
 router.post('/', account_controller.create_account_post);
 
 
-
 module.exports = router;

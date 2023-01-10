@@ -1,11 +1,32 @@
-
-const addBookButton = document.querySelector('#addBook');
 const bookModal = new bootstrap.Modal(document.getElementById('addBookModal'), {});
 const submitBookButton = document.querySelector('#submit-book');
 
-addBookButton.addEventListener('click', function() {
+// wait for items like "add book" button and "view comments" link to exist in DOM so that we can set event listeners
+function waitForElement(selector) {
+  return new Promise(resolve => {
+      if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+      }
+
+      const observer = new MutationObserver(mutations => {
+          if (document.querySelector(selector)) {
+              resolve(document.querySelector(selector));
+              observer.disconnect();
+          }
+      });
+
+      observer.observe(document.body, {
+          childList: true,
+          subtree: true
+      });
+  });
+}
+
+waitForElement('#addBook').then((elem) => {
+  elem.addEventListener('click', function() {
     clearModal();
     bookModal.show();
+  })
 });
 
 //book modal fields
@@ -21,6 +42,7 @@ function clearModal() {
     genreField.value = "none";
     raterField.value = "none";
     ownCopy.checked = false;
+    comments.value = "";
     
     titleField.parentElement.classList.remove('error');
     authorField.parentElement.classList.remove('error');
@@ -28,7 +50,7 @@ function clearModal() {
     raterField.parentElement.classList.remove('error');
   }
 
-let modalFooter = document.querySelector('.modal-footer');
+let modalFooter = document.querySelector('.add-book-modal-footer');
 submitBookButton.addEventListener('click', function() {
     if (validate() == true) {
         let p = document.createElement('p');
