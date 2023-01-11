@@ -164,7 +164,6 @@ small {
 
 .row {
   gap: 3%;
-  justify-content: center;
 }
 
 
@@ -250,7 +249,6 @@ small {
 /* .list-items-users:first-child {
 	margin-top: 1rem;
 }
-
 .list-items-users:last-child {
 	margin-bottom: 1rem;
 } */
@@ -276,11 +274,16 @@ small {
 }
 
 .list-items-users:nth-child(4n - 2) a {
-  color: rgb(246, 182, 5);
+  color: var(--orange);
 }
 
 .rabbit-holes {
  font-family: 'Courier New', Courier, monospace;
  margin-top: 2%;
  margin-bottom: 2%;
+ color: rgb(33, 33, 33);
+}
+
+.homepage-row {
+  justify-content: center;
 }

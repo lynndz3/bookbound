@@ -61,6 +61,7 @@ exports.user_books = (req, res) => {
                         "bookinfo.title": 1,
                         "bookinfo.author": 1,
                         "bookinfo.genre": 1,
+                        dateMonthYear: { $dateToString: { format: "%m/%d/%Y", date: "$date_added" } },
                         rating: 1,
                         own_copy: 1,
                         date_added: 1,
