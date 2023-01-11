@@ -2,7 +2,6 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
 const User = require('../../models/users');
 const mongoose = require('mongoose');
-require('https').globalAgent.options.rejectUnauthorized = false;
 
 passport.serializeUser((user, done) => {
     done(null, user);

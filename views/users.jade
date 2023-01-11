@@ -8,10 +8,14 @@ block content
       each user in data.user_details
        - var fullname = `${user.first_name} ${user.last_name}`
        - var friendUrlPath = `${user.userId}`
-         li.list-items-users
+         if currentUser 
+          li.list-items-users
            if user.userId == currentUser.userId 
              a.span.your-books-link(href='/readers/#{currentUser.userId}') My Book Dashboard
            else
+             a(href='/readers/#{friendUrlPath}') #{fullname}
+         else 
+           li.list-items-users
              a(href='/readers/#{friendUrlPath}') #{fullname}
    p Currently ALL app users are displayed here. Coming soon: choose specific people to "follow"
 

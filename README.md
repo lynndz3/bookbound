@@ -1,37 +1,70 @@
 <h1 align="center">BookBound</h1>
 
-Link to the site: 
+### Link to the site: https://bookbound.herokuapp.com/
 
-<h2 align="center">Product Description</h2>
+<br>
 
-I used to start bi-weekly email/text with friends and family:
- "Hey what are you reading now? Do you like it?"
- "Any good sci-fi you've read this year?"
- "What are some of your favorite books or all time? 
- Do you have a hard copy I could borrow?"
+## The Why
 
-I had all the same access to Amazon and Goodreads reviews just like everyone else, but I: 
-    1. trusted their recommendations more than the masses, 
-    2. loved being able to discuss the book afterwards with them
+I read too fast. It's probably not a good thing. A good reader gives themself enough time to think critically, discover the intricacies, and savor the writing. But I don't.
 
-Enter BookBound. BookBound is a web application solely dedicated to sharing your favorite books with those you love and finding your next book from those you trust.
+And because I don't, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
 
-# Existing features and technologies
+> "Hey what are you reading now? Do you like it?"
+
+> "Any good sci-fi you've read this year?"
+
+> "What's your favorite memoir?
+
+> Do you have a hard copy I could borrow?"
+
+I have all the same access to Amazon and Goodreads reviews just like everyone else, but I trust my family & friends' recommendations more than the masses. 
+
+And it's wonderful to finish a book and have people you can discuss it with!
+
+Enter <b>BookBound</b>. BookBound is a web application dedicated to sharing your favorite books with those you love and finding your next book from those you trust.
+
+<br>
+
+## Technologies
 <ul>
-  <li>Hosted on Heroku</li > 
-  <li>Full-stack app using Node, Express, and MongoDB/Mongoose</li>
-  <li>
+  <li>Node</li>
+  <li>NPM</li>
+  <li>Express</li>
+  <li>MongoDB / Mongoose</li>
+  <li>Jade/Pug (templating language)</li>
+  <li>Javascript, HTML, CSS</li>
+  <li>Bootstrap</li>
+  <li>Integrated with Google Auth</li>
+  <li>Hosted on Heroku</li> 
 </ul>
 
-# Potential future features!
+<br>
 
+## Please contribute! Here's how.
 
-# Use in 
+<ol>
+<li>Fork me</li>
 
+<li>Install NPM dependencies (see package.json for all dependencies)</li>
 
-# Contribute
+<li>Run script:</li> 
 
-I'd love help improving the site. 
+```
+npm run serverstart
+```
+<li>View on localhost:3000</li>
+</ol>
+
+<br>
+
+## Future features (in priority order)
+<ul>
+ <li>"Follow" friends (vs seeing all users on "/readers")</li>
+ <li>Ability to filter columns</li>
+ <li>Utilize Google API to search for books to reduce data entry & prevent duplicates (& display book covers!)</li>
+</ul>
+
 
 
 

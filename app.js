@@ -5,18 +5,22 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 const session = require('express-session');
-const passportSetup = require("./public/javascripts/passport-setup");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-// const LocalStrategy = require("passport-local").Strategy;
-// const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const passportSetupGoogle = require("./public/javascripts/passport-setup-google");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var signUpRouter = require('./routes/create-account')
-var loginRouter = require('./routes/login')
+var loginRouter = require('./routes/login');
+var createAccountRouter = require('./routes/create-account');
 
 var app = express();
+
+app.use('/', indexRouter);
+app.use('/readers', usersRouter);
+app.use('/login', loginRouter);
+app.use('/create-account', createAccountRouter);
+
 
 // Mongoose (database) connection
 const mongoose = require("mongoose");
@@ -41,11 +45,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/readers', usersRouter);
-app.use('/create-account', signUpRouter);
-app.use('/login', loginRouter);
 
 app.post('/logout', function(req, res, next) {
   req.logout(function(err) {
