@@ -2,6 +2,8 @@ extends layout
 
 block content
  .container
+  form(method='GET' action='/readers') 
+    a(href='/readers') Back
   .mt-4.button-row.d-flex.align-items-center
     .reader-name #{data.reader_name}
     .outline.d-flex.align-items-center.ms-4
@@ -19,34 +21,16 @@ block content
           th(scope='col') Title
           th(scope='col') Author
           th(scope='col') Genre
-          th(scope='col') Own copy
           th(scope='col') Rating
+          th(scope='col') Own copy
       tbody
       each book in data.book_detail
-        tr(id= book._id)
-         if !book.comments
+        tr
           td #{book.bookinfo[0].title}
           td #{book.bookinfo[0].author}
           td #{book.bookinfo[0].genre}
-          td= book.own_copy ? '✅' : '❌'
           td #{book.rating}
-         else
-          td #{book.bookinfo[0].title}
-          td #{book.bookinfo[0].author}
-          td #{book.bookinfo[0].genre}
           td= book.own_copy ? '✅' : '❌'
-          td #{book.rating}
-            br
-            button.btn.btn-link(style='font-size: 12px; padding-left: 0' type='button' data-bs-toggle='modal' data-bs-target=`#modal-${book._id}`) view comments
-            .modal.fade(id=`modal-${book._id}` tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                 .modal-dialog
-                    .modal-content
-                     .modal-header
-                       h5#exampleModalLabel.modal-title Comments
-                       button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                     .modal-body #{book.comments}
-                     .modal-footer
-                       button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
   #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
     .modal-dialog
         .modal-content
@@ -67,14 +51,14 @@ block content
                     label.form-label(for='genre') Genre
                     select#genre.form-select(aria-label='Select genre', name='genre')
                         option(value='') select genre
-                        option(value='SciFi, Fantasy') SciFi/Fantasy
-                        option(value='Mystery, Crime') Mystery/Crime
+                        option(value='SciFi/Fantasy') SciFi/Fantasy
+                        option(value='Mystery/Crime') Mystery/Crime
                         option(value='Short Stories') Short Stories
                         option(value='Historical Fiction') Historical Fiction
                         option(value='Beach Read') Beach Read
                         option(value='Fiction (general)') Fiction (general)
                         option(value='Non-Fiction, Memoir') Non-Fiction, Memoir
-                        option(value='Learning, Fact-Based') Learning/Fact-Based
+                        option(value='Learning/Fact-Based') Learning/Fact-Based
                     small No Error
                 .mb-2.rating-question
                     label.form-label(for='rating') Rating
@@ -87,12 +71,23 @@ block content
                         option(value='5: all-time fave') 5: all-time favorite
                     small No Error
                 .mb-2.form-floating
-                    textarea#comments.form-control(style='min-height: 100px;', name='comments')
+                    textarea#comments.form-control(style='min-height: 100px;')
                     label(for='comments' style='color: grey') Optional comments
                 .mb-2.form-check
                     input#ownit.form-check-input(type='checkbox', name='ownit')
                     label.form-check-label(for='ownit')
                     | Own a hard copy?
-                .modal-footer.add-book-modal-footer
+                .modal-footer
                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
                     button#submit-book.btn.btn-primary(type='submit') Submit
+  #commentsModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+   .modal-dialog
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Comments
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+      .modal-footer
+        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+
+

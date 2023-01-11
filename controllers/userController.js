@@ -19,7 +19,7 @@ exports.user_list = (req, res) => {
             res.render("users", {
                 error: err,
                 data: results,
-                user: req.user
+                currentUser: req.user
             });
         }
     );
@@ -76,7 +76,7 @@ exports.user_books = (req, res) => {
                 id: params, 
                 data: results, 
                 error: err,
-                user: currentUser
+                currentUser: currentUser
             })
         }
     )

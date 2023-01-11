@@ -1,11 +1,18 @@
 extends layout
 
 block content
-  a.span.your-books-link(href='/readers/#{user.userId}') Your Book List
-  h3 Or take a peek at your friends' faves:
-  ul 
-    each user in data.user_details
-     - var fullname = `${user.first_name} ${user.last_name}`
-     - var friendUrlPath = `${user.userId}`   
-       li 
-         a(href='/readers/#{friendUrlPath}') #{fullname}
+ .container
+   h1.rabbit-holes Rabbit holes:
+   .list-container-users
+     ul.unordered-list-users 
+      each user in data.user_details
+       - var fullname = `${user.first_name} ${user.last_name}`
+       - var friendUrlPath = `${user.userId}`
+         li.list-items-users
+           if user.userId == currentUser.userId 
+             a.span.your-books-link(href='/readers/#{currentUser.userId}') My Book Dashboard
+           else
+             a(href='/readers/#{friendUrlPath}') #{fullname}
+   p Currently ALL app users are displayed here. Coming soon: choose specific people to "follow"
+
+  

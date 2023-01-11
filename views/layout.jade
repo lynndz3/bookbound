@@ -8,19 +8,21 @@ head
   script(type='module' src='/javascripts/add_books.js' defer='')
   link(rel='preconnect' href='https://fonts.googleapis.com')
   link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
   link(href='https://fonts.googleapis.com/css2?family=Marhey&display=swap' rel='stylesheet')
   title BookBound
 body
   nav.navbar.navbar-light.bg-light
     .container-fluid
       .logo
-        img(src='/images/book-logo.png' alt='book' style='width: 30px; height: 30px')
-        span.navbar-brand.mb-0.h1   BookBound
+         img(src='/images/book-logo.png' alt='book' style='width: 30px; height: 30px')
+         span.navbar-brand.mb-0.h1   BookBound
       .auth-google
-       if !user
+       if !currentUser
         a.button.login-with-google-btn(href='/create-account/login/google') Sign up or Login
        else 
-        span.auth Hi, #{user.first_name}
+        span.auth Hi, #{currentUser.first_name}
         form(action='/logout' method='post')
           button(name='logout' class='logout' value='') Log out
   block content
