@@ -48,6 +48,8 @@ Enter <b>BookBound</b>. BookBound is a web application dedicated to sharing your
 
 <li>Install NPM dependencies (see package.json for all dependencies)</li>
 
+<li>In `.public/javascripts/passport-setup.js` update the callback URL to `http://localhost:3000/create-account/google/callback`</li>
+
 <li>Run script:</li> 
 
 ```
@@ -60,6 +62,7 @@ npm run serverstart
 
 ## Future features (in priority order)
 <ul>
+ <li>Allow users to edit reviews (coming soon!)</li>
  <li>"Follow" friends (vs seeing all users on "/readers")</li>
  <li>Ability to filter columns</li>
  <li>Utilize Google API to search for books to reduce data entry & prevent duplicates (& display book covers!)</li>
