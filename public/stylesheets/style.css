@@ -287,3 +287,15 @@ small {
 .homepage-row {
   justify-content: center;
 }
+
+.bi-trash {
+  margin-left: 15px;
+}
+
+.bi {
+  color: rgb(5, 81, 223);
+}
+
+tr {
+  vertical-align: middle;
+}

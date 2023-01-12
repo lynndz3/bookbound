@@ -142,3 +142,7 @@ exports.user_book_create = [
         }
     }
 ];
+
+exports.user_book_delete = (req, res) => {
+    console.log(req.body);
+}

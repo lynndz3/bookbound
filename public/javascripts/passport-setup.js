@@ -15,11 +15,13 @@ passport.deserializeUser((id, done) => {
         });
     });
 
+//UPDATE callback URL to localhost:3000/create-account/google/callback to run locally
+
 passport.use(new GoogleStrategy ({
     // options for google strategy
     clientID: '845597817109-g3foc79kb8eaf6lkj4vhk6h1spv54urr.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: 'https://bookbound.herokuapp.com/create-account/google/callback',
+    callbackURL: 'http://localhost:3000/create-account/google/callback',
     passReqToCallback : true
     }, 
     
