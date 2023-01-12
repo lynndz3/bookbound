@@ -2,28 +2,13 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 
-const account_controller = require("../controllers/accountController");
-
-/* GET home page. */
-router.get('/', account_controller.create_account_get);
-
-// GET google sign-in page
+// Create account through google
 router.get('/login/google', passport.authenticate('google', { scope : ['profile', 'email'] })); 
-// {
-//     scope: ["profile", "email"] }), 
-//     (req, res) => {
-//     console.log("Im authenticating");
-//     user = req.user;
-//     res.send(user)
-// });
 
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
 function(req, res) {
   // Successful authentication, redirect home.
   res.redirect('/readers');
 });
-
-router.post('/', account_controller.create_account_post);
-
 
 module.exports = router;

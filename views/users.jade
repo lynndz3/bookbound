@@ -4,14 +4,14 @@ block content
  .container
    h1.rabbit-holes Rabbit holes:
    .list-container-users
-     ul.unordered-list-users 
-      each user in data.user_details
-       - var fullname = `${user.first_name} ${user.last_name}`
-       - var friendUrlPath = `${user.userId}`
-         li.list-items-users
-           if user.userId == currentUser.userId 
-             a.span.your-books-link(href='/readers/#{currentUser.userId}') My Book Dashboard
-           else
+     ul.unordered-list-users
+      li.list-items-users
+       a.span.your-books-link(href='/readers/#{currentUser.userId}') My Book Dashboard 
+       each user in data.user_details
+         - var fullname = `${user.first_name} ${user.last_name}`
+         - var friendUrlPath = `${user.userId}`
+          if user.userId != currentUser.userId 
+           li.list-items-users
              a(href='/readers/#{friendUrlPath}') #{fullname}
    p Currently ALL app users are displayed here. Coming soon: choose specific people to "follow"
 

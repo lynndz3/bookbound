@@ -8,7 +8,13 @@ block content
     .reader-name #{data.reader_name}
     .outline.d-flex.align-items-center.ms-4
       .label-num-books.me-2 # Books:
-      .num-books #{data.book_detail.length}
+      if data.book_detail
+       .num-books #{data.book_detail.length}
+      else  
+       .num-books 0
+    if id == 1 
+      .addBookButton
+        button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
     if currentUser
      if currentUser.userId == id
       .addBookButton

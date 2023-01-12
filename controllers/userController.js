@@ -6,6 +6,17 @@ const { body, validationResult } = require("express-validator");
 const async = require("async");
 
 exports.user_list = (req, res) => {
+    let currentUser;
+    if(!req.user) {
+        currentUser = {
+            userId: 1,
+            first_name: 'Bob - test',
+            last_name: 'user'
+
+        }
+    }
+    else currentUser = req.user;
+    console.log(currentUser);
     async.parallel(
         {
             user_count(callback) {
@@ -19,7 +30,7 @@ exports.user_list = (req, res) => {
             res.render("users", {
                 error: err,
                 data: results,
-                currentUser: req.user
+                currentUser: currentUser
             });
         }
     );
