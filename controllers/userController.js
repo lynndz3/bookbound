@@ -144,5 +144,10 @@ exports.user_book_create = [
 ];
 
 exports.user_book_delete = (req, res) => {
-    console.log(req.body);
-}
+     Review.findOneAndDelete({_id: req.body.bookId}, function (err) {
+            if (err) console.log(err);
+            console.log("successful deletion");
+
+            })
+    res.redirect(`/readers/${req.body.pageId}`)
+};
