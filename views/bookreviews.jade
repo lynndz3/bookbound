@@ -62,7 +62,6 @@ block content
           td #{book.rating}
           td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
   #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-  #addBookModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
     .modal-dialog
         .modal-content
             .modal-header
@@ -120,6 +119,17 @@ block content
       .modal-body
       .modal-footer
         button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+  #deleteModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+   .modal-dialog
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Delete Book
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body Are you sure you want to delete this book? You can't undo this change.
+      .modal-footer
+       form(method='POST' action='/delete')
+        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Nevermind
+        button#submit-book.btn.btn-primary(type='submit') Yes, delete it!
 
 //- to remove certain columns from table on phone:
 //- .d-none.d-sm-table-cell
