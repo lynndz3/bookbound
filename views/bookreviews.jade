@@ -12,15 +12,14 @@ block content
        .num-books #{data.book_detail.length}
       else  
        .num-books 0
-    if id == 1 || currentUser
-     if id == 1 || currentUser.userId == id
+     if currentUser.userId == id
       .addBookButton
         button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
   .row.table-row
     table#favoriteBooks.table.table-striped
       thead
        tr
-        if id == 1 || currentUser.userId == id
+        if currentUser.userId == id
           th(scope='col') Date Added
           th(scope='col') Title
           th(scope='col') Author
@@ -39,7 +38,7 @@ block content
       each book in data.book_detail
        tr
         if !book.comments
-          if id == 1 || currentUser.userId == id
+          if currentUser.userId == id
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
             td #{book.bookinfo[0].author}
@@ -47,13 +46,11 @@ block content
             td #{book.rating}
             td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
             td.d-none.d-sm-table-cell(style= 'width: 80px; text-align: center;')
-              svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
-                    path(d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
-              button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target='#deleteModal-NoComments') 
+              button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`) 
                svg.bi.bi-trash(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
                     path(d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z')
                     path(fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z')
-              #deleteModal-NoComments.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+              .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id=`delete-${book._id}`)
                 .modal-dialog
                   .modal-content
                     .modal-header
@@ -67,7 +64,7 @@ block content
                        input(type='hidden' value=`${book._id}` name='bookId')
                        input(type='hidden' value=`${id}` name='pageId')
                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Nevermind
-                       button#submit-book.btn.btn-primary(type='submit') Yes, delete it!
+                       button#delete-book.btn.btn-primary(type='submit') Yes, delete it!
           else   
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
@@ -76,7 +73,7 @@ block content
             td #{book.rating}
             td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
         else 
-          if id == 1 || currentUser.userId == id
+          if currentUser.userId == id
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
             td #{book.bookinfo[0].author}
@@ -95,13 +92,10 @@ block content
                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
             td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
             td.d-none.d-sm-table-cell(style= 'width: 80px; text-align: center;')
-              svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
-                    path(d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
-              button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target='#deleteModal') 
                svg.bi.bi-trash(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
                     path(d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z')
                     path(fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z')
-              #deleteModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+              .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id=`delete-${book._id}`)
                 .modal-dialog
                   .modal-content
                     .modal-header
@@ -115,7 +109,7 @@ block content
                        input(type='hidden' value=`${book._id}` name='bookId')
                        input(type='hidden' value=`${id}` name='pageId')
                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Nevermind
-                       button#submit-book.btn.btn-primary(type='submit') Yes, delete it!
+                       button#delete-book.btn.btn-primary(type='submit') Yes, delete it!
           else 
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
@@ -187,4 +181,7 @@ block content
 //- to remove certain columns from table on phone:
 //- .d-none.d-sm-table-cell
 
-
+//- Pencil icon to add later
+//- svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
+//-                     path(d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
+//-               button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`) 
