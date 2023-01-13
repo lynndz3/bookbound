@@ -8,7 +8,8 @@ const BookReviewSchema = new Schema({
     rating: { type: String, required: true, maxLength: 100 },
     own_copy: { type: String },
     date_added: { type: Date, default: Date.now, required: true },
-    comments: { type: String }
-})
+    comments: { type: String },
+    active: {type: Boolean }
+    })
 
 module.exports = mongoose.model("Review", BookReviewSchema, "reviews");

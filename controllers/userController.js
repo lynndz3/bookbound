@@ -37,6 +37,7 @@ exports.user_list = (req, res) => {
 };
 
 exports.user_books = (req, res) => {
+    let currentUser;
     if(!req.user) {
         currentUser = {
             userId: 1,
@@ -71,7 +72,7 @@ exports.user_books = (req, res) => {
                     },
                     { $match :
                         {
-                            $and: [{ "userinfo.userId" : Number(params)}] 
+                            $and: [{ "userinfo.userId" : Number(params)}, { active : true }] 
                         }
                     },
                     { $project: {
@@ -119,7 +120,17 @@ exports.user_book_create = [
 
     async(req, res) => {
         const errors = validationResult(req);
-        const currentUser = req.user;
+        let currentUser;
+        if(!req.user) {
+            currentUser = {
+                _id: '63bf230a32f4587464eebb52',
+                userId: 1,
+                first_name: 'Bob - test',
+                last_name: 'user'
+    
+            }
+        }
+        else currentUser = req.user;
         console.log(req.body);
         console.log(currentUser);
         if (!errors.isEmpty()) return;
@@ -140,7 +151,8 @@ exports.user_book_create = [
                 user: currentUser._id,
                 rating: req.body.rating,
                 own_copy: req.body.ownit,
-                comments: req.body.comments
+                comments: req.body.comments,
+                active: true
             })
             await review.save();
             res.redirect(`/readers/${req.params.id}`);
@@ -151,9 +163,10 @@ exports.user_book_create = [
 ];
 
 exports.user_book_delete = (req, res) => {
-     Review.findOneAndDelete({_id: req.body.bookId}, function (err) {
+     Review.updateOne({_id: req.body.bookId}, { $set: { active: false}},
+        function (err) {
             if (err) console.log(err);
-            console.log("successful deletion");
+            console.log("successfully set to inactive");
 
             })
     res.redirect(`/readers/${req.body.pageId}`)
