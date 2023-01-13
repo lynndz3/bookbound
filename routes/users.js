@@ -12,4 +12,6 @@ router.post("/:id", user_controller.user_book_create);
 
 router.post("/:id/delete", user_controller.user_book_delete);
 
+router.post("/:id/edit-book", user_controller.user_book_edit);
+
 module.exports = router;

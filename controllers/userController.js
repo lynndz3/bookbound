@@ -76,6 +76,7 @@ exports.user_books = (req, res) => {
                         }
                     },
                     { $project: {
+                        "bookinfo._id": 1,
                         "userinfo.userId": 1,
                         "bookinfo.title": 1,
                         "bookinfo.author": 1,
@@ -167,7 +168,52 @@ exports.user_book_delete = (req, res) => {
         function (err) {
             if (err) console.log(err);
             console.log("successfully set to inactive");
-
             })
     res.redirect(`/readers/${req.body.pageId}`)
 };
+
+exports.user_book_edit = [
+        body("title")
+            .trim()
+            .isLength({min: 1})
+            .escape(),
+        body("author")
+            .trim()
+            .isLength({min: 1})
+            .escape(),
+        body("genre")
+            .isLength({min: 1})
+            .escape(),
+        body("rating")
+            .isLength({min: 1})
+            .escape(),
+    
+        async(req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) return;
+            console.log("starting to update");
+            Books.updateOne({'_id': req.body.bookId}, 
+                { $set: { 
+                    title: req.body.title,
+                    author: req.body.author,
+                    genre: req.body.genre
+                    }
+                },
+                function (err) {
+                    if (err) console.log(err);
+                    console.log("successfully updated book");
+                    });
+            Review.updateOne({ '_id': req.body.bookReviewId}, 
+                { $set: {
+                    rating: req.body.rating,
+                    own_copy: req.body.ownit,
+                    comments: req.body.comments,
+                    }
+                },
+                function (err) {
+                    if (err) console.log(err);
+                    console.log("successfully updated review");
+                    });
+            await res.redirect(`/readers/${req.body.pageId}`)
+        }
+];

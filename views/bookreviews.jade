@@ -44,9 +44,106 @@ block content
             td #{book.bookinfo[0].author}
             td #{book.bookinfo[0].genre}
             td #{book.rating}
-            td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
-            td.d-none.d-sm-table-cell(style= 'width: 80px; text-align: center;')
-              button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`) 
+            td(style= 'width: 100px;')= book.own_copy ? '✅' : '❌'
+            td.d-none.d-sm-table-cell(style= 'width: 80px;')
+              button.btn-link.btn.edit-delete(type='button' data-bs-toggle='modal' data-bs-target=`#edit-${book._id}`)
+               svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
+                  path(d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
+              .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id=`edit-${book._id}`)
+                 .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h5#exampleModalLabel.modal-title Edit Book
+                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        .modal-body
+                          form(method='POST' action="#{id}/edit-book")
+                            .mb-2
+                                label.form-label(for='title') Book Title
+                                input#title-edit.form-control(type='text', name='title', value=`${book.bookinfo[0].title}`)
+                                small No Error
+                            .mb-2
+                                label.form-label(for='author') Author
+                                input#author-edit.form-control(type='text', name='author', value=`${book.bookinfo[0].author}`)
+                                small No Error
+                            .mb-2
+                                label.form-label(for='genre') Genre
+                                select#genre-edit.form-select(aria-label='Select genre', name='genre' value=`${book.bookinfo[0].genre}`)
+                                  if book.bookinfo[0].genre == 'SciFi, Fantasy'
+                                    option(value='SciFi, Fantasy' selected) SciFi/Fantasy
+                                  else 
+                                    option(value='SciFi, Fantasy') SciFi/Fantasy
+                                  if book.bookinfo[0].genre == 'Mystery, Crime'
+                                    option(value='Mystery, Crime' selected) Mystery/Crime
+                                  else
+                                    option(value='Mystery, Crime') Mystery/Crime
+                                  if book.bookinfo[0].genre == 'Short Stories'
+                                    option(value='Short Stories' selected) Short Stories
+                                  else
+                                    option(value='Short Stories') Short Stories
+                                  if book.bookinfo[0].genre == 'Historical Fiction'
+                                    option(value='Historical Fiction' selected) Historical Fiction
+                                  else
+                                    option(value='Historical Fiction') Historical Fiction
+                                  if book.bookinfo[0].genre == 'each Read'
+                                    option(value='Beach Read' selected) Beach Read
+                                  else
+                                    option(value='Beach Read') Beach Rea
+                                  if book.bookinfo[0].genre == 'Fiction (general)'
+                                    option(value='Fiction (general)' selected) Fiction (general)
+                                  else
+                                    option(value='Fiction (general)') Fiction (general)
+                                  if book.bookinfo[0].genre == 'Non-Fiction, Memoir'
+                                    option(value='Non-Fiction, Memoir' selected) Non-Fiction, Memoir
+                                  else
+                                    option(value='Non-Fiction, Memoir') Non-Fiction, Memoir
+                                  if book.bookinfo[0].genre == 'Learning, Fact-Based'
+                                    option(value='Learning, Fact-Based' selected) Learning/Fact-Based
+                                  else
+                                    option(value='Learning, Fact-Based') Learning/Fact-Based
+                                small No Error
+                            .mb-2.rating-question
+                                label.form-label(for='rating') Rating
+                                select#rating-edit.form-select(aria-label='Your rating', name='rating', value=`${book.rating}`)
+                                  if book.rating == "1: dont bother"
+                                    option(value="1: dont bother" selected) 1: don&apos;t bother
+                                  else
+                                    option(value="1: dont bother") 1: don&apos;t bother
+                                  if book.rating == '2: just ok'
+                                    option(value='2: just ok' selected) 2: just ok
+                                  else
+                                    option(value='2: just ok') 2: just ok
+                                  if book.rating == '3: pretty good'
+                                    option(value='3: pretty good' selected) 3: pretty good
+                                  else
+                                    option(value='3: pretty good') 3: pretty good
+                                  if book.rating == '4: really enjoyed'
+                                    option(value='4: really enjoyed' selected) 4: really enjoyed
+                                  else
+                                    option(value='4: really enjoyed') 4: really enjoyed
+                                  if book.rating == '5: all-time fave'
+                                    option(value='5: all-time fave' selected) 5: all-time favorite
+                                  else
+                                    option(value='5: all-time fave') 5: all-time favorite
+                                small No Error
+                            .mb-2.form-floating
+                                textarea#comments-edit.form-control(style='min-height: 100px;' name='comments') #{book.comments}
+                                label(for='comments' style='color: grey') Optional comments
+                            .mb-2.form-check
+                              if book.own_copy
+                                input#ownit-edit.form-check-input(type='checkbox', name='ownit' checked)
+                                label.form-check-label(for='ownit')
+                                | Own a hard copy?
+                              else
+                                input#ownit-edit.form-check-input(type='checkbox', name='ownit')
+                                label.form-check-label(for='ownit')
+                                | Own a hard copy?
+                            .modal-footer.edit-book-modal-footer
+                                input(type='hidden' value=`${book.bookinfo[0]._id}` name='bookId')
+                                input(type='hidden' value=`${book._id}` name='bookReviewId')
+                                input(type='hidden' value=`${id}` name='pageId')
+                                button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
+                                button#submit-book-edit.btn.btn-primary(type='submit') Submit
+              button.btn-link.btn.edit-delete(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`) 
                svg.bi.bi-trash(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
                     path(d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z')
                     path(fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z')
@@ -91,8 +188,105 @@ block content
                      .modal-footer
                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
             td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
-            td.d-none.d-sm-table-cell(style= 'width: 80px; text-align: center;')
-              button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`)
+            td.d-none.d-sm-table-cell(style= 'width: 80px;')
+              button.btn-link.btn.edit-delete(type='button' data-bs-toggle='modal' data-bs-target=`#edit-${book._id}`)
+               svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
+                  path(d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
+              .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id=`edit-${book._id}`)
+                 .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h5#exampleModalLabel.modal-title Edit Book
+                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        .modal-body
+                          form(method='POST' action="#{id}/edit-book")
+                            .mb-2
+                                label.form-label(for='title') Book Title
+                                input#title-edit.form-control(type='text', name='title', value=`${book.bookinfo[0].title}`)
+                                small No Error
+                            .mb-2
+                                label.form-label(for='author') Author
+                                input#author-edit.form-control(type='text', name='author', value=`${book.bookinfo[0].author}`)
+                                small No Error
+                            .mb-2
+                                label.form-label(for='genre') Genre
+                                select#genre-edit.form-select(aria-label='Select genre', name='genre' value=`${book.bookinfo[0].genre}`)
+                                  if book.bookinfo[0].genre == 'SciFi, Fantasy'
+                                    option(value='SciFi, Fantasy' selected) SciFi/Fantasy
+                                  else 
+                                    option(value='SciFi, Fantasy') SciFi/Fantasy
+                                  if book.bookinfo[0].genre == 'Mystery, Crime'
+                                    option(value='Mystery, Crime' selected) Mystery/Crime
+                                  else
+                                    option(value='Mystery, Crime') Mystery/Crime
+                                  if book.bookinfo[0].genre == 'Short Stories'
+                                    option(value='Short Stories' selected) Short Stories
+                                  else
+                                    option(value='Short Stories') Short Stories
+                                  if book.bookinfo[0].genre == 'Historical Fiction'
+                                    option(value='Historical Fiction' selected) Historical Fiction
+                                  else
+                                    option(value='Historical Fiction') Historical Fiction
+                                  if book.bookinfo[0].genre == 'each Read'
+                                    option(value='Beach Read' selected) Beach Read
+                                  else
+                                    option(value='Beach Read') Beach Rea
+                                  if book.bookinfo[0].genre == 'Fiction (general)'
+                                    option(value='Fiction (general)' selected) Fiction (general)
+                                  else
+                                    option(value='Fiction (general)') Fiction (general)
+                                  if book.bookinfo[0].genre == 'Non-Fiction, Memoir'
+                                    option(value='Non-Fiction, Memoir' selected) Non-Fiction, Memoir
+                                  else
+                                    option(value='Non-Fiction, Memoir') Non-Fiction, Memoir
+                                  if book.bookinfo[0].genre == 'Learning, Fact-Based'
+                                    option(value='Learning, Fact-Based' selected) Learning/Fact-Based
+                                  else
+                                    option(value='Learning, Fact-Based') Learning/Fact-Based
+                                small No Error
+                            .mb-2.rating-question
+                                label.form-label(for='rating') Rating
+                                select#rating-edit.form-select(aria-label='Your rating', name='rating', value=`${book.rating}`)
+                                  if book.rating == "1: dont bother"
+                                    option(value="1: dont bother" selected) 1: don&apos;t bother
+                                  else
+                                    option(value="1: dont bother") 1: don&apos;t bother
+                                  if book.rating == '2: just ok'
+                                    option(value='2: just ok' selected) 2: just ok
+                                  else
+                                    option(value='2: just ok') 2: just ok
+                                  if book.rating == '3: pretty good'
+                                    option(value='3: pretty good' selected) 3: pretty good
+                                  else
+                                    option(value='3: pretty good') 3: pretty good
+                                  if book.rating == '4: really enjoyed'
+                                    option(value='4: really enjoyed' selected) 4: really enjoyed
+                                  else
+                                    option(value='4: really enjoyed') 4: really enjoyed
+                                  if book.rating == '5: all-time fave'
+                                    option(value='5: all-time fave' selected) 5: all-time favorite
+                                  else
+                                    option(value='5: all-time fave') 5: all-time favorite
+                                small No Error
+                            .mb-2.form-floating
+                                textarea#comments-edit.form-control(style='min-height: 100px;' name='comments') #{book.comments}
+                                label(for='comments' style='color: grey') Optional comments
+                            .mb-2.form-check
+                              if book.own_copy
+                                input#ownit-edit.form-check-input(type='checkbox', name='ownit' checked)
+                                label.form-check-label(for='ownit')
+                                | Own a hard copy?
+                              else
+                                input#ownit-edit.form-check-input(type='checkbox', name='ownit')
+                                label.form-check-label(for='ownit')
+                                | Own a hard copy?
+                            .modal-footer.edit-book-modal-footer
+                                input(type='hidden' value=`${book.bookinfo[0]._id}` name='bookId')
+                                input(type='hidden' value=`${book._id}` name='bookReviewId')
+                                input(type='hidden' value=`${id}` name='pageId')
+                                button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
+                                button#submit-book-edit.btn.btn-primary(type='submit') Submit
+              button.btn-link.btn.edit-delete(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`)
                 svg.bi.bi-trash(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
                     path(d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z')
                     path(fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z')
@@ -175,14 +369,10 @@ block content
                     input#ownit.form-check-input(type='checkbox', name='ownit')
                     label.form-check-label(for='ownit')
                     | Own a hard copy?
-                .modal-footer
+                .modal-footer.add-book-modal-footer
                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
                     button#submit-book.btn.btn-primary(type='submit') Submit
 
 //- to remove certain columns from table on phone:
 //- .d-none.d-sm-table-cell
-
-//- Pencil icon to add later
-//- svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
-//-                     path(d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
-//-               button.btn-link.btn(type='button' data-bs-toggle='modal' data-bs-target=`#delete-${book._id}`) 
+ 

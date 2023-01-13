@@ -29,7 +29,7 @@ waitForElement('#addBook').then((elem) => {
   })
 });
 
-//book modal fields
+//Add NEW book modal fields
 let titleField = document.querySelector("#title");
 let authorField = document.querySelector("#author");
 let genreField = document.querySelector("#genre");
@@ -51,8 +51,8 @@ function clearModal() {
   }
 
 let modalFooter = document.querySelector('.add-book-modal-footer');
-submitBookButton.addEventListener('click', function() {
-    if (validate() == true) {
+submitBookButton.addEventListener('click', function(e) {
+    if (validateNew() == true) {
         let p = document.createElement('p');
         p.textContent = "Woohoo! Saving your book! One sec...";
         p.style.color = 'green';
@@ -67,7 +67,8 @@ submitBookButton.addEventListener('click', function() {
     small.innerHTML = message;
   }
   
-const validate = () => {
+const validateNew = () => {
+  console.log("validating")
     if (titleField.value.trim() === "" ||
         authorField.value.trim() === "" ||
         genreField.value === "none" ||
@@ -90,3 +91,45 @@ const validate = () => {
   }
 
 
+//EDIT book modal fields
+const editBook = document.querySelector('#submit-book-edit');
+
+let editModalFooter = document.querySelector('.edit-book-modal-footer');
+
+let editTitleField = document.querySelector("#title-edit");
+let editAuthorField = document.querySelector("#author-edit");
+let editGenreField = document.querySelector("#genre-edit");
+let editRaterField = document.querySelector("#rating-edit");
+let editOwnCopy = document.querySelector("#ownit-edit");
+
+editBook.addEventListener('click', function() {
+  if (validateEdit() == true) {
+      let p = document.createElement('p');
+      p.textContent = "Woohoo! Saving your book! One sec...";
+      p.style.color = 'green';
+      editModalFooter.appendChild(p);
+  }
+})
+
+const validateEdit = () => {
+  console.log("validating")
+    if (editTitleField.value.trim() === "" ||
+        editAuthorField.value.trim() === "" ||
+        editGenreField.value === "none" ||
+        editRaterField.value === "none") {
+          if (editTitleField.value.trim() === "") {
+            setErrorFor(editTitleField, "Title can't be blank");
+          }
+          if (editAuthorField.value.trim() === "") {
+            setErrorFor(editAuthorField, "Give the writer some credit here");
+          }
+          if (editGenreField.value === "") {
+            setErrorFor(editGenreField, "Genres are hard, but give it your best shot");
+          }
+          if (editRaterField.value === "") {
+            setErrorFor(editRaterField, "Go with your gut");
+        }
+        return false;
+    }
+    else return true;
+  }

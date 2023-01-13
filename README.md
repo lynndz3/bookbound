@@ -6,9 +6,9 @@
 
 ## The Why
 
-I read too fast. It's probably not a good thing. A good reader gives themself enough time to think critically, discover the intricacies, and savor the writing. But I don't.
+I read too fast. It's not a good thing. People should savor their books.
 
-And because I don't, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
+But I don't - I crush them. And so, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
 
 > "Hey what are you reading now? Do you like it?"
 
@@ -22,7 +22,7 @@ I have all the same access to Amazon and Goodreads reviews just like everyone el
 
 And it's wonderful to finish a book and have people you can discuss it with!
 
-Enter <b>BookBound</b>. BookBound is a web application dedicated to sharing your favorite books with those you love and finding your next book from those you trust.
+That's where BookBound comes in. BookBound is a web application dedicated to sharing your favorite books with those you love and finding your next book from those you trust.
 
 <br>
 
