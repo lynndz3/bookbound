@@ -279,9 +279,10 @@ small {
 
 .rabbit-holes {
  font-family: 'Courier New', Courier, monospace;
- margin-top: 2%;
+ margin-top: 8%;
  margin-bottom: 2%;
  color: rgb(33, 33, 33);
+ font-weight: 900;
 }
 
 .homepage-row {
@@ -298,4 +299,8 @@ small {
 
 tr {
   vertical-align: middle;
+}
+
+#delete-book {
+  margin-left: 8px;
 }
