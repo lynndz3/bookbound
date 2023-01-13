@@ -20,8 +20,7 @@ block content
     table#favoriteBooks.table.table-striped
       thead
        tr
-        if id == 1 || currentUser
-         if id == 1 || currentUser.userId == id
+        if id == 1 || currentUser.userId == id
           th(scope='col') Date Added
           th(scope='col') Title
           th(scope='col') Author
@@ -40,7 +39,6 @@ block content
       each book in data.book_detail
        tr
         if !book.comments
-         if id == 1 || currentUser
           if id == 1 || currentUser.userId == id
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
@@ -70,7 +68,7 @@ block content
                        input(type='hidden' value=`${id}` name='pageId')
                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Nevermind
                        button#submit-book.btn.btn-primary(type='submit') Yes, delete it!
-         else   
+          else   
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
             td #{book.bookinfo[0].author}
@@ -78,7 +76,6 @@ block content
             td #{book.rating}
             td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
         else 
-         if id == 1 || currentUser
           if id == 1 || currentUser.userId == id
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
@@ -119,7 +116,7 @@ block content
                        input(type='hidden' value=`${id}` name='pageId')
                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Nevermind
                        button#submit-book.btn.btn-primary(type='submit') Yes, delete it!
-         else 
+          else 
             td #{book.dateMonthYear}
             td #{book.bookinfo[0].title}
             td #{book.bookinfo[0].author}

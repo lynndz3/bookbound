@@ -37,7 +37,14 @@ exports.user_list = (req, res) => {
 };
 
 exports.user_books = (req, res) => {
-    const currentUser = req.user;
+    if(!req.user) {
+        currentUser = {
+            userId: 1,
+            first_name: 'Bob - test',
+            last_name: 'user'
+        }
+    }
+    else currentUser = req.user;
     const params = req.params.id;
     async.parallel(
         {
