@@ -6,9 +6,9 @@
 
 ## The Why
 
-I read too fast. It's not a good thing. People should savor their books.
+I read too fast. (It's not a good thing. People should savor their books.)
 
-But I don't - I crush them. And so, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
+But because I read too fast, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
 
 > "Hey what are you reading now? Do you like it?"
 
@@ -62,10 +62,11 @@ npm run serverstart
 
 ## Future features (in priority order)
 <ul>
- <li>Allow users to edit reviews (coming soon!)</li>
  <li>"Follow" friends (vs seeing all users on "/readers")</li>
- <li>Ability to filter columns</li>
  <li>Utilize Google API to search for books to reduce data entry & prevent duplicates (& display book covers!)</li>
+  <li>Ability to filter columns</li>
 </ul>
+
+Have other cool ideas?? Let me know.
 
 
