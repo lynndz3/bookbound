@@ -8,7 +8,7 @@
 
 I read too fast. (It's not a good thing. People should savor their books.)
 
-But because I read too fast, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
+And because I read too fast, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
 
 > "Hey what are you reading now? Do you like it?"
 
