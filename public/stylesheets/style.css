@@ -3,6 +3,10 @@
   font-family: 'Marhey';
 }
 
+h1 {
+  font-family: 'Marhey';
+}
+
 .header {
   text-align: left;
   margin-left: 0;
@@ -75,6 +79,7 @@ small {
   border: var(--orange);
   background-color: var(--orange);
   padding: 7px;
+  width: 120px;
 }
 
 .num-books {
@@ -169,10 +174,10 @@ small {
 
 @media screen and (max-width: 700px) {
   .hero-img {
-    width: 80%;
+    width: 60%;
   }
   .headline {
-    font-size: 3rem;
+    font-size: 2.7rem;
     text-align: center;
 }
   .homepage-container {
@@ -181,16 +186,46 @@ small {
   .subheader {
     margin-top: 10px;
     text-align: center;
-    font-family:'Lucida sans-serif'
   }
   .subtext-italics {
     text-align: center;
-    font-family:'Lucida sans-serif'
+    font-size: 1rem;
   }
+  .test-container {
+    font-size: 12px;
+    align-items: center !important;
+    margin-top: 5%;
+  }
+  .homepagelogin {
+    width: 300px !important;
+  }
+  .login-container {
+    align-items: center !important;
+  }
+  .your-books-link {
+    font-size: 1rem !important;
+  }
+  .your-dash-btn {
+    width: 200px;
+    margin-bottom: 4% !important;
+  }
+  .name-num-books {
+    text-align: center;
+    margin-bottom: 5%;
+  }
+  .addBookButton {
+    text-align: center !important;
+    margin-left: 0 !important;
+  }
+}
+
+.subheader {
+  font-family: sans-serif;
 }
 
 .subtext-italics {
   font-size: 1.3rem;
+  font-family: sans-serif;
 }
 
 .orange {
@@ -278,6 +313,7 @@ small {
  margin-bottom: 2%;
  color: rgb(33, 33, 33);
  font-weight: 900;
+ font-stretch: condensed;
 }
 
 .homepage-row {
@@ -305,7 +341,13 @@ tr {
   font-size: 1.5rem;
   color: white;
   text-decoration: none;
+  font-stretch: condensed;
 }
+
+.your-books-link:hover{
+  color: white !important;
+}
+
 
 .form-label {
   text-align: left !important;
@@ -314,3 +356,6 @@ tr {
 .edit-delete {
   padding: 0 !important;
 }
+
+
+

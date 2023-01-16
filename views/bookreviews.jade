@@ -4,14 +4,16 @@ block content
  .container-fluid.container
   form(method='GET' action='/readers') 
     a(href='/readers') Back
-  .mt-4.button-row.d-flex.align-items-center
-    .reader-name #{data.reader_name}
-    .outline.d-flex.align-items-center.ms-4
-      .label-num-books.me-2 # Books:
-      if data.book_detail
-       .num-books #{data.book_detail.length}
-      else  
-       .num-books 0
+  .mt-4.button-row.d-flex.align-items-center.row
+   .col.order-1.d-inline.name-num-books
+      .reader-name.d-inline.ms-3.me-4 #{data.reader_name}
+      .outline.d-inline
+        .label-num-books.me-2.d-inline.text-nowrap # Books:
+        if data.book_detail
+         .num-books.d-inline #{data.book_detail.length}
+        else  
+         .num-books.d-inline 0
+   .col.order-2.d-flex.flex-column
      if currentUser.userId == id
       .addBookButton
         button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
@@ -44,7 +46,7 @@ block content
             td #{book.bookinfo[0].author}
             td #{book.bookinfo[0].genre}
             td #{book.rating}
-            td(style= 'width: 100px;')= book.own_copy ? '✅' : '❌'
+            td(style= 'width: 100px; text-align: center;')= book.own_copy ? '✅' : '❌'
             td.d-none.d-sm-table-cell(style= 'width: 80px;')
               button.btn-link.btn.edit-delete(type='button' data-bs-toggle='modal' data-bs-target=`#edit-${book._id}`)
                svg.bi.bi-pencil(xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewbox='0 0 16 16')
