@@ -3,10 +3,11 @@ extends layout
 block content
  .container
    h2.readers-headers Add some books
-   button.btn.btn-primary
+   button.btn.btn-primary.your-dash-btn
     a.your-books-link(href='/readers/#{currentUser.userId}') My Book Dashboard 
    h2.readers-headers Friends you're following
-   p Currently ALL users are displayed here. Coming soon: choose specific people to "follow"!
+   p 
+    em Currently ALL users are displayed here. Coming soon: "follow" only your friends.
    .list-container-users
      ul.unordered-list-users
        each user in data.user_details

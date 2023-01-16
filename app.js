@@ -8,15 +8,13 @@ const session = require('express-session');
 const passportSetup = require("./public/javascripts/passport-setup");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-// const LocalStrategy = require("passport-local").Strategy;
-// const GoogleStrategy = require("passport-google-oauth2").Strategy;
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var signUpRouter = require('./routes/create-account')
-var loginRouter = require('./routes/login')
 
 var app = express();
+
+// Routes!
+var indexRouter = require('./routes/index');
+var readersRouter = require('./routes/readers');
+var signUpRouter = require('./routes/create-account')
 
 // Mongoose (database) connection
 const mongoose = require("mongoose");
@@ -42,11 +40,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//url paths corresponding to routes
 app.use('/', indexRouter);
-app.use('/readers', usersRouter);
+app.use('/readers', readersRouter);
 app.use('/create-account', signUpRouter);
-app.use('/login', loginRouter);
 
+//logout function
 app.post('/logout', function(req, res, next) {
   req.logout(function(err) {
     if (err) { return next(err); }
