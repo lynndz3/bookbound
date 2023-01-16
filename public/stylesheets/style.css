@@ -356,5 +356,6 @@ tr {
   padding: 0 !important;
 }
 
-
-
+td {
+  max-width: 220px;
+}
