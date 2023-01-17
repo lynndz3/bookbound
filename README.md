@@ -18,7 +18,7 @@ And because I read too fast, I always need a new book. Every couple of weeks I'm
 
 > Do you have a hard copy I could borrow?"
 
-I have all the same access to Amazon and Goodreads reviews just like everyone else, but I trust my family & friends' recommendations more than the masses. 
+I have all the same access to Amazon and Goodreads reviews just like everyone else, but I trust my family & friends' recommendations more than the masses.
 
 And it's wonderful to finish a book and have people you can discuss it with!
 
@@ -27,6 +27,7 @@ That's where BookBound comes in. BookBound is a web application dedicated to sha
 <br>
 
 ## Technologies
+
 <ul>
   <li>Node</li>
   <li>NPM</li>
@@ -50,17 +51,19 @@ That's where BookBound comes in. BookBound is a web application dedicated to sha
 
 <li>In `.public/javascripts/passport-setup.js` update the callback URL to `http://localhost:3000/create-account/google/callback`</li>
 
-<li>Run script:</li> 
+<li>Run script:</li>
 
 ```
 npm run serverstart
 ```
+
 <li>View on localhost:3000</li>
 </ol>
 
 <br>
 
 ## Future features (in priority order)
+
 <ul>
  <li>"Follow" friends (vs seeing all users on "/readers")</li>
  <li>Utilize Google API to search for books to reduce data entry & prevent duplicates (& display book covers!)</li>
@@ -68,5 +71,3 @@ npm run serverstart
 </ul>
 
 Have other cool ideas?? Let me know.
-
-
