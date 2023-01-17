@@ -3,11 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-require('dotenv').config();
 const session = require('express-session');
-const passportSetup = require("./public/javascripts/passport-setup");
+const passportSetup = require("./controllers/passport-setup");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+require('dotenv').config();
 
 var app = express();
 
@@ -18,7 +18,7 @@ var signUpRouter = require('./routes/create-account')
 
 // Mongoose (database) connection
 const mongoose = require("mongoose");
-const mongoDB = "mongodb+srv://admin:password.123@cluster0.wuctjcp.mongodb.net/bookbound?retryWrites=true&w=majority";
+const mongoDB = process.env.DATABASE;
 mongoose.set('strictQuery', false);
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log("Database Connected"))
 .catch((err) => console.log(err));

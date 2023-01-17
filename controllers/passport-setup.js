@@ -1,8 +1,8 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
-const User = require('../../models/users');
+const User = require('../models/users');
 const mongoose = require('mongoose');
-require('https').globalAgent.options.rejectUnauthorized = false;
+require('dotenv').config();
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -15,16 +15,14 @@ passport.deserializeUser((id, done) => {
         });
     });
 
-//UPDATE callback URL to localhost:3000/create-account/google/callback to run locally
-
 passport.use(new GoogleStrategy ({
     // options for google strategy
-    clientID: '845597817109-g3foc79kb8eaf6lkj4vhk6h1spv54urr.apps.googleusercontent.com',
-    clientSecret: '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',
-    callbackURL: 'https://bookbound.herokuapp.com/create-account/google/callback',
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: (process.env.NODE_ENV == 'development' ? 
+        process.env.GOOGLE_AUTH_CALLBACK_LOCAL : process.env.GOOGLE_AUTH_CALLBACK_PROD),
     passReqToCallback : true
     }, 
-    
     async (accessToken, refreshToken, profile, done) => {
     // check if user already exists in our own db
     User.findOne({googleId: profile.id}).then((currentUser) => {
