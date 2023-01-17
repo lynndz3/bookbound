@@ -1,11 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 const user_controller = require("../controllers/userController");
 const book_controller = require("../controllers/bookController");
 
 /* GET users listing. */
-router.get('/', user_controller.user_list_get);
+router.get("/", user_controller.user_list_get);
 
 router.get("/:id", book_controller.user_book_get);
 

@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
+    "serverstart": "DEBUG=express-locallibrary-tutorial:* export NODE_ENV=development&&npm run devstart"
   },
   "dependencies": {
     "async": "^3.2.4",
@@ -28,6 +28,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "prettier": "2.8.3"
   }
 }
