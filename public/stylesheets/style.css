@@ -161,7 +161,7 @@ small {
 
 .homepage-container {
   padding-top: 72px;
-  height: 85vh;
+  min-height: 85vh;
 }
 
 .headline {
@@ -226,6 +226,15 @@ small {
   .addBookButton {
     text-align: center !important;
     margin-left: 0 !important;
+  }
+  .footer-content {
+    font-size: 0.7rem;
+  }
+  .footer {
+    margin-top: 5%;
+  }
+  .homepage-container {
+    min-height: 100vh;
   }
 }
 
@@ -374,6 +383,7 @@ td {
 
 .footer {
   justify-content: center;
+  margin-top: 5%;
 }
 
 .book-review-container {
