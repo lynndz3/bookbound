@@ -39,8 +39,8 @@ passport.use(
           // if not, create user in our db
           new User({
             googleId: profile.id,
-            first_name: ((profile.name && profile.name.givenName) ? profile.name.givenName : null),
-            last_name: ((profile.name && profile.name.familyName) ? profile.name.familyName : null),
+            first_name: ((profile.name.givenName) ? profile.name.givenName : null),
+            last_name: ((profile.name.familyName) ? profile.name.familyName : null),
             email: profile.emails[0].value,
           })
             .save()
