@@ -42,8 +42,8 @@ let ownCopy = document.querySelector("#ownit");
 function clearModal() {
   titleField.value = "";
   authorField.value = "";
-  genreField.value = "none";
-  raterField.value = "none";
+  genreField.value = "";
+  raterField.value = "";
   ownCopy.checked = false;
   comments.value = "";
 
@@ -75,8 +75,8 @@ const validateNew = () => {
   if (
     titleField.value.trim() === "" ||
     authorField.value.trim() === "" ||
-    genreField.value === "none" ||
-    raterField.value === "none"
+    genreField.value === "" ||
+    raterField.value === ""
   ) {
     if (titleField.value.trim() === "") {
       setErrorFor(titleField, "Title can't be blank");
@@ -105,7 +105,8 @@ let editGenreField = document.querySelector("#genre-edit");
 let editRaterField = document.querySelector("#rating-edit");
 let editOwnCopy = document.querySelector("#ownit-edit");
 
-editBook.addEventListener("click", function () {
+editBook.addEventListener("click", function (e) {
+  console.log(e);
   if (validateEdit() == true) {
     let p = document.createElement("p");
     p.textContent = "Woohoo! Saving your book! One sec...";
@@ -119,8 +120,8 @@ const validateEdit = () => {
   if (
     editTitleField.value.trim() === "" ||
     editAuthorField.value.trim() === "" ||
-    editGenreField.value === "none" ||
-    editRaterField.value === "none"
+    editGenreField.value === "" ||
+    editRaterField.value === ""
   ) {
     if (editTitleField.value.trim() === "") {
       setErrorFor(editTitleField, "Title can't be blank");

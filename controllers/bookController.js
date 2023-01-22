@@ -82,10 +82,10 @@ exports.user_book_get = (req, res) => {
 };
 
 exports.user_book_create = [
-  body("title").trim().isLength({ min: 1 }).escape(),
-  body("author").trim().isLength({ min: 1 }).escape(),
-  body("genre").isLength({ min: 1 }).escape(),
-  body("rating").isLength({ min: 1 }).escape(),
+  body("title").trim().isLength({ min: 1 }),
+  body("author").trim().isLength({ min: 1 }),
+  body("genre").isLength({ min: 1 }),
+  body("rating").isLength({ min: 1 }),
 
   async (req, res) => {
     const errors = validationResult(req);
@@ -142,15 +142,14 @@ exports.user_book_delete = (req, res) => {
 };
 
 exports.user_book_edit = [
-  body("title").trim().isLength({ min: 1 }).escape(),
-  body("author").trim().isLength({ min: 1 }).escape(),
-  body("genre").isLength({ min: 1 }).escape(),
-  body("rating").isLength({ min: 1 }).escape(),
+  body("title").trim().isLength({ min: 1 }),
+  body("author").trim().isLength({ min: 1 }),
+  body("genre").isLength({ min: 1 }),
+  body("rating").isLength({ min: 1 }),
 
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return;
-    console.log("starting to update");
     Books.updateOne(
       { _id: req.body.bookId },
       {

@@ -213,14 +213,14 @@ block content
                             .mb-2
                                 label.form-label(for='genre') Genre
                                 select#genre-edit.form-select(aria-label='Select genre', name='genre' value=`${book.bookinfo[0].genre}`)
-                                  if book.bookinfo[0].genre == 'SciFi, Fantasy'
-                                    option(value='SciFi, Fantasy' selected) SciFi/Fantasy
+                                  if book.bookinfo[0].genre == ('SciFi, Fantasy' || 'SciFi/Fantasy')
+                                    option(value='SciFi/Fantasy' selected) SciFi/Fantasy
                                   else 
-                                    option(value='SciFi, Fantasy') SciFi/Fantasy
-                                  if book.bookinfo[0].genre == 'Mystery, Crime'
-                                    option(value='Mystery, Crime' selected) Mystery/Crime
+                                    option(value='SciFi/Fantasy') SciFi/Fantasy
+                                  if book.bookinfo[0].genre == ('Mystery, Crime' || 'Mystery/Crime')
+                                    option(value='Mystery/Crime' selected) Mystery/Crime
                                   else
-                                    option(value='Mystery, Crime') Mystery/Crime
+                                    option(value='Mystery/Crime') Mystery/Crime
                                   if book.bookinfo[0].genre == 'Short Stories'
                                     option(value='Short Stories' selected) Short Stories
                                   else
@@ -229,22 +229,22 @@ block content
                                     option(value='Historical Fiction' selected) Historical Fiction
                                   else
                                     option(value='Historical Fiction') Historical Fiction
-                                  if book.bookinfo[0].genre == 'each Read'
+                                  if book.bookinfo[0].genre == 'Beach Read'
                                     option(value='Beach Read' selected) Beach Read
                                   else
-                                    option(value='Beach Read') Beach Rea
+                                    option(value='Beach Read') Beach Read
                                   if book.bookinfo[0].genre == 'Fiction (general)'
                                     option(value='Fiction (general)' selected) Fiction (general)
                                   else
                                     option(value='Fiction (general)') Fiction (general)
-                                  if book.bookinfo[0].genre == 'Non-Fiction, Memoir'
+                                  if book.bookinfo[0].genre == ('Non-Fiction, Memoir')
                                     option(value='Non-Fiction, Memoir' selected) Non-Fiction, Memoir
                                   else
                                     option(value='Non-Fiction, Memoir') Non-Fiction, Memoir
                                   if book.bookinfo[0].genre == 'Learning, Fact-Based'
-                                    option(value='Learning, Fact-Based' selected) Learning/Fact-Based
+                                    option(value='Learning, Fact-Based' selected) Learning, Fact-Based
                                   else
-                                    option(value='Learning, Fact-Based') Learning/Fact-Based
+                                    option(value='Learning, Fact-Based') Learning, Fact-Based
                                 small No Error
                             .mb-2.rating-question
                                 label.form-label(for='rating') Rating
@@ -344,20 +344,21 @@ block content
                 .mb-2
                     label.form-label(for='genre') Genre
                     select#genre.form-select(aria-label='Select genre', name='genre')
-                        option(value='') select genre
-                        option(value='SciFi, Fantasy') SciFi/Fantasy
-                        option(value='Mystery, Crime') Mystery/Crime
+                        option(value='' selected='selected') select genre
+                        option(value='SciFi/Fantasy') SciFi/Fantasy
+                        option(value='Mystery/Crime') Mystery/Crime
                         option(value='Short Stories') Short Stories
                         option(value='Historical Fiction') Historical Fiction
                         option(value='Beach Read') Beach Read
                         option(value='Fiction (general)') Fiction (general)
                         option(value='Non-Fiction, Memoir') Non-Fiction, Memoir
-                        option(value='Learning, Fact-Based') Learning/Fact-Based
+                        option(value='Learning, Fact-Based') Learning, Fact-Based
                     small No Error
                 .mb-2.rating-question
                     label.form-label(for='rating') Rating
                     select#rating.form-select(aria-label='Your rating', name='rating')
-                        option(value='') Your rating
+                        option(value='' selected='selected') Your rating
+                        option(value='Not started / not finished') Not started / not finished
                         option(value="1: dont bother") 1: don&apos;t bother
                         option(value='2: just ok') 2: just ok
                         option(value='3: pretty good') 3: pretty good
