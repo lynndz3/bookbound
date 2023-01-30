@@ -106,6 +106,10 @@ block content
                             .mb-2.rating-question
                                 label.form-label(for='rating') Rating
                                 select#rating-edit.form-select(aria-label='Your rating', name='rating', value=`${book.rating}`)
+                                  if book.rating == 'Not started / not finished'
+                                    option(value='Not started / not finished' selected) Not started / not finished 
+                                  else
+                                    option(value='Not started / not finished') Not started / not finished
                                   if book.rating == "1: dont bother"
                                     option(value="1: dont bother" selected) 1: don&apos;t bother
                                   else
@@ -249,6 +253,10 @@ block content
                             .mb-2.rating-question
                                 label.form-label(for='rating') Rating
                                 select#rating-edit.form-select(aria-label='Your rating', name='rating', value=`${book.rating}`)
+                                  if book.rating == 'Not started / not finished'
+                                    option(value='Not started / not finished' selected) Not started / not finished 
+                                  else
+                                    option(value='Not started / not finished') Not started / not finished 
                                   if book.rating == "1: dont bother"
                                     option(value="1: dont bother" selected) 1: don&apos;t bother
                                   else
