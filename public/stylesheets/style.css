@@ -330,12 +330,10 @@ small {
 }
 
 .readers-headers {
-  font-family: "Courier New", Courier, monospace;
   margin-top: 4%;
   margin-bottom: 2%;
   color: rgb(33, 33, 33);
-  font-weight: 900;
-  font-stretch: condensed;
+  font-stretch: expanded;
 }
 
 .homepage-row {
@@ -393,4 +391,8 @@ td {
 .footer-content {
   width: 500px;
   text-align: center;
+}
+
+.friends-container {
+  min-height: 80vh;
 }
