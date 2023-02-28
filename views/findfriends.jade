@@ -6,3 +6,19 @@ block content
    p 
    .list-container-users
      ul.unordered-list-users
+      each user in data.user_details
+         - var exitLoop = 0
+         - var fullname = `${user.first_name} ${user.last_name}`
+         - var friendUrlPath = `${user.userId}`
+          if user.userId != currentUser.userId
+            each friend in data.already_following[0].following
+              if friend.userId == user.userId
+                - exitLoop = 1
+                - break
+            if exitLoop == 1
+              - continue
+            li.list-items-users
+              a(href='/readers/#{friendUrlPath}') #{fullname}
+              form(method='POST' action="")
+               input(type='hidden' value=`${user.userId}` name='friendId')
+               button.follow-btn(type='submit') follow
