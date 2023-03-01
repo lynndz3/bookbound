@@ -1,6 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oidc");
 const User = require("../models/users");
+const Followers = require("../models/followers");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
@@ -53,3 +54,17 @@ passport.use(
     }
   )
 );
+
+
+
+
+// Followers.findOneAndUpdate({ user : user._id},
+//   { $set: {user: user._id} }, 
+//     {
+//       new: true,
+//       upsert: true
+//   })
+// } catch (error) {
+// res.render("error", { error: error });
+// }
+// }

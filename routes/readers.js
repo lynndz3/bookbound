@@ -7,6 +7,10 @@ const book_controller = require("../controllers/bookController");
 /* GET users listing. */
 router.get("/", user_controller.user_list_get);
 
+router.get("/follow", user_controller.friend_find_get);
+
+router.post("/follow", user_controller.follow_friend);
+
 router.get("/:id", book_controller.user_book_get);
 
 router.post("/:id", book_controller.user_book_create);
