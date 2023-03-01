@@ -8,13 +8,23 @@ exports.user_list_get = (req, res) => {
   if (!req.user) {
     currentUser = {
       userId: 1,
+      _id: '63bf230a32f4587464eebb52',
       first_name: "Bob - test",
       last_name: "user",
     };
   } else currentUser = req.user;
-  console.log(currentUser);
-  async.parallel(
-    {
+    async.parallel(
+      {
+        user_followers(callback) {
+          Followers.findOneAndUpdate({ user : currentUser._id},
+            { $set: {user: currentUser._id} }, 
+              {
+                new: true,
+                upsert: true
+            },
+            callback
+            );
+        },
       user_count(callback) {
         User.countDocuments({}, callback);
       },
@@ -67,6 +77,7 @@ exports.user_list_get = (req, res) => {
     }
   );
 };
+
 
 exports.friend_find_get = (req, res) => {
   let currentUser;
@@ -125,6 +136,7 @@ exports.friend_find_get = (req, res) => {
     }
   );
 };
+
 
 exports.follow_friend = [
   async (req, res) => {

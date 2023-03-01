@@ -9,6 +9,7 @@ block content
    p 
    .list-container-users
      ul.unordered-list-users
+      if data.friend_list[0].following_details
        each user in data.friend_list[0].following_details
          - var fullname = `${user.first_name} ${user.last_name}`
          - var friendUrlPath = `${user.userId}`
