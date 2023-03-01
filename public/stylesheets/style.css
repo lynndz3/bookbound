@@ -242,6 +242,23 @@ small {
   .list-container-users {
     font-size: 1.2rem !important;
   }
+  .empty-state {
+    display: block !important;
+    text-align: center !important;
+    font-size: 0.8rem !important;
+  }
+  .table-striped {
+    font-size: 0.7rem;
+  }
+  .bi-trash {
+    margin-left: 0 !important;
+  }
+  .bi-pencil {
+    margin-bottom: 10px;
+  }
+  .unordered-list-users {
+    min-width: 320px !important;
+  }
 
 }
 
@@ -312,7 +329,7 @@ small {
 
 .unordered-list-users {
   list-style-position: inside;
-  width: 600px;
+  min-width: 500px;
   max-width: 100%;
   background: white;
   box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
@@ -417,7 +434,12 @@ td {
 
 .friends-container {
   min-height: 80vh;
-  margin-top: 3%;
+  margin-top: 5%;
+}
+
+.find-friends-container {
+  min-height: 80vh;
+  margin-top: 2%;
 }
 
 .friend-link {

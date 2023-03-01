@@ -8,7 +8,7 @@ block content
    p 
    .list-container-users#list-container-friends
      ul.unordered-list-users
-      if data.friend_list[0].following_details
+      if data.friend_list[0]
        each user in data.friend_list[0].following_details
          - var fullname = `${user.first_name} ${user.last_name}`
          - var friendUrlPath = `${user.userId}`
@@ -21,9 +21,9 @@ block content
     const listContainer = document.querySelector('#list-container-friends');
 
     (function () {
-      console.log("set empty function is working");
       if (!listFriends) {
         listContainer.style.placeItems = 'center';
+        listContainer.classList.add('empty-state');
         let p = document.createElement("p");
         p.textContent = "Uh oh, you're not following anyone yet.";
         p.style.color = "#545151";
@@ -38,5 +38,8 @@ block content
         a.style.alignSelf = 'flex-start';
         listContainer.appendChild(a);
           }
+        if(listFriends) {
+          listContainer.classList.remove('empty-state');
+        }
       })();
   
