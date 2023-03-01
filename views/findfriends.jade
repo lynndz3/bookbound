@@ -2,6 +2,8 @@ extends layout
 
 block content
  .container.friends-container
+   form(method='GET' action='/readers') 
+    a(href='/readers') Back
    h2.readers-headers Find friends to follow:
    p 
    .list-container-users
@@ -18,7 +20,7 @@ block content
             if exitLoop == 1
               - continue
             li.list-items-users
-              a(href='/readers/#{friendUrlPath}') #{fullname}
+              a.friend-link(href='/readers/#{friendUrlPath}') #{fullname}
               form(method='POST' action="")
                input(type='hidden' value=`${user.userId}` name='friendId')
                button.follow-btn(type='submit') follow

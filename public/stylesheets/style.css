@@ -1,5 +1,7 @@
 :root {
   --orange: rgb(243, 154, 46);
+  --blue: #0077d6;
+  --grey: #545151;
   font-family: "Marhey";
 }
 
@@ -33,8 +35,9 @@ h1 {
     #00c0ff 100%
   );
   background-color: rgb(246, 234, 219);
-  color: #1d1d1d;
-  font-weight: 600;
+  color: black; 
+  font-weight: 800;
+  font-family: sans-serif;
   border: none;
   text-transform: uppercase;
   padding: 10px 15px;
@@ -212,13 +215,7 @@ small {
   .login-container {
     align-items: center !important;
   }
-  .your-books-link {
-    font-size: 1rem !important;
-  }
-  .your-dash-btn {
-    width: 200px;
-    margin-bottom: 4% !important;
-  }
+
   .name-num-books {
     text-align: center;
     margin-bottom: 5%;
@@ -236,11 +233,41 @@ small {
   .homepage-container {
     min-height: 100vh;
   }
+  .your-books-link, .find-friends-link {
+    font-size: 1rem !important;
+  }
+  .readers-headers {
+    margin-top: 8% !important;
+  }
+  .list-container-users {
+    font-size: 1.2rem !important;
+  }
+
 }
 
 .subheader {
   font-family: sans-serif;
 }
+
+.your-books-link {
+  text-decoration: none;
+  margin-right: 3%;
+  background-color: var(--blue);
+  padding: 1%;
+  font-family: "Marhey";
+  font-size: 1.25rem;
+  color: white;
+  }
+
+
+.find-friends-link {
+  text-decoration: none;
+  padding: 1%;
+  font-family: "Marhey";
+  font-size: 1.25rem;
+  background-color: var(--orange);
+  color: white;
+  }
 
 .subtext-italics {
   font-size: 1.3rem;
@@ -296,6 +323,8 @@ small {
 
 .list-items-users {
   padding: 1rem 1rem 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .list-items-users:not(:last-child) {
@@ -317,7 +346,7 @@ small {
     " ";
 }
 
-.list-items-users:nth-child(4n) a {
+/* .list-items-users:nth-child(4n) a {
   color: rgb(216, 48, 48);
 }
 
@@ -326,8 +355,8 @@ small {
 }
 
 .list-items-users:nth-child(4n - 2) a {
-  color: var(--orange);
-}
+  color: var(--orange); */
+
 
 .readers-headers {
   margin-top: 4%;
@@ -356,15 +385,8 @@ tr {
   margin-left: 8px;
 }
 
-.your-books-link {
-  font-family: "Marhey";
-  font-size: 1.25rem;
-  color: white;
-  text-decoration: none;
-}
-
 .your-books-link:hover {
-  color: white !important;
+  color: var(--orange) !important;
 }
 
 .form-label {
@@ -395,4 +417,15 @@ td {
 
 .friends-container {
   min-height: 80vh;
+  margin-top: 3%;
+}
+
+.friend-link {
+  color: var(--orange);
+}
+
+.follow-btn {
+  color: var(--blue);
+  border: var(--blue);
+  font-size: 0.8em;
 }

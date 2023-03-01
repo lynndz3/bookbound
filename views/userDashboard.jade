@@ -2,20 +2,41 @@ extends layout
 
 block content
  .container.friends-container
-   h2.readers-headers Add books:
-   button.btn.btn-primary.your-dash-btn
-    a.your-books-link(href='/readers/#{currentUser.userId}') My Dashboard 
-   h2.readers-headers View friends' books:
+   a.your-books-link(href='/readers/#{currentUser.userId}') My Book Collection
+   a.find-friends-link(href='/readers/follow') Find More Friends
+   h2.readers-headers My friends:
    p 
-   .list-container-users
+   .list-container-users#list-container-friends
      ul.unordered-list-users
       if data.friend_list[0].following_details
        each user in data.friend_list[0].following_details
          - var fullname = `${user.first_name} ${user.last_name}`
          - var friendUrlPath = `${user.userId}`
           if user.userId != currentUser.userId 
-           li.list-items-users
-             a(href='/readers/#{friendUrlPath}') #{fullname}
-     a.find-friends(href='/readers/follow') Find your friends!
+           li.list-items-users#friend-list
+             a.friend-link(href='/readers/#{friendUrlPath}') #{fullname}
 
+  script.
+    const listFriends = document.querySelector("#friend-list");
+    const listContainer = document.querySelector('#list-container-friends');
+
+    (function () {
+      console.log("set empty function is working");
+      if (!listFriends) {
+        listContainer.style.placeItems = 'center';
+        let p = document.createElement("p");
+        p.textContent = "Uh oh, you're not following anyone yet.";
+        p.style.color = "#545151";
+        p.style.fontSize = '1.5em';
+        p.style.textAlign = 'center';
+        listContainer.appendChild(p);
+        let a = document.createElement('a');
+        a.textContent = 'Find and Follow Friends'
+        a.setAttribute('href', '/readers/follow');
+        a.style.fontSize = '1.5em';
+        a.style.textAlign = 'center';
+        a.style.alignSelf = 'flex-start';
+        listContainer.appendChild(a);
+          }
+      })();
   
