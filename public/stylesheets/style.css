@@ -449,6 +449,7 @@ td {
 .follow-btn {
   color: var(--blue);
   font-size: 0.8em;
+  background-color: #d3d3d354 !important;
 }
 
 .back-btn {
