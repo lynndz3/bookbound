@@ -10,8 +10,6 @@ I read too fast. (It's not a good thing. People should savor their books.)
 
 And because I read too fast, I always need a new book. Every couple of weeks I'm emailing, texting, calling my friends and family:
 
-> "Hey what are you reading now? Do you like it?"
-
 > "Any good sci-fi you've read this year?"
 
 > "What's your favorite memoir?
@@ -63,10 +61,9 @@ npm run serverstart
 ## Future features (in priority order)
 
 <ul>
- <li>"Follow" friends (vs seeing all users on "/readers")</li>
  <li>Utilize Google API to search for books to reduce data entry & prevent duplicates (& display book covers!)</li>
- <li>Ability to filter columns</li>
- <li>One user adds their own review for existing book</li>
+ <li>User can filter columns</li>
+ <li>User can add their review to a book someone else added</li>
 </ul>
 
 Have other cool ideas?? Let me know.
