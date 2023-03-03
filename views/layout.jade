@@ -24,7 +24,7 @@ body
        else 
         span.auth Hi, #{currentUser.first_name}
         form(action='/logout' method='post')
-          button(name='logout' class='logout' value='') Log out
+          button.logout(name='logout' class='logout' value='') Log out
   block content
   footer.navbar.bg-light.footer
     .footer-content

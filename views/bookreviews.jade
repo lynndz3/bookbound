@@ -3,7 +3,7 @@ extends layout
 block content
  .container-fluid.container.book-review-container
   form(method='GET' action='/readers') 
-    a(href='/readers') Back
+    a.back-btn(href='/readers') Back
   .mt-4.button-row.d-flex.align-items-center.row
    .col.order-1.d-inline.name-num-books
       .reader-name.d-inline.ms-3.me-4 #{data.reader_name}

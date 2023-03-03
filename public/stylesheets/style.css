@@ -120,7 +120,7 @@ small {
 .logout {
   font-family: "Marhey";
   font-size: 0.9rem;
-  color: rgb(37, 57, 173);
+  color: var(--blue);
 }
 
 .login-with-google-btn {
@@ -448,6 +448,9 @@ td {
 
 .follow-btn {
   color: var(--blue);
-  border: var(--blue);
   font-size: 0.8em;
+}
+
+.back-btn {
+  color: var(--blue);
 }
