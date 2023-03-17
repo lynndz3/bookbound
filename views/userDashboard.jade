@@ -12,7 +12,7 @@ block content
        each user in data.friend_list[0].following_details
          - var fullname = `${user.first_name} ${user.last_name}`
          - var friendUrlPath = `${user.userId}`
-          if user.userId != currentUser.userId 
+          if user.userId != currentUser.userId
            li.list-items-users#friend-list
              a.friend-link(href='/readers/#{friendUrlPath}') #{fullname}
 

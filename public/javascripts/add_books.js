@@ -142,16 +142,16 @@ const validateEdit = () => {
   } else return true;
 };
 
-const listFriends = document.querySelector("#friend-list");
-const listContainer = document.querySelector('#list-container-friends');
+// const listFriends = document.querySelector("#friend-list");
+// const listContainer = document.querySelector('#list-container-friends');
 
 
-function setEmptyState() {
-  console.log("set empty function is working");
-  if (!listFriends) {
-    let p = document.createElement("p");
-    p.textContent = "Uh oh, you're not following anyone yet. Use the link to find and follow your friends.";
-    p.style.color = "grey";
-    listContainer.appendChild(p);
-  }
-}
+// function setEmptyState() {
+//   console.log("set empty function is working");
+//   if (!listFriends) {
+//     let p = document.createElement("p");
+//     p.textContent = "Uh oh, you're not following anyone yet. Use the link to find and follow your friends.";
+//     p.style.color = "grey";
+//     listContainer.appendChild(p);
+//   }
+// }

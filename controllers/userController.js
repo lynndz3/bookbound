@@ -12,7 +12,9 @@ exports.user_list_get = (req, res) => {
       first_name: "Bob - test",
       last_name: "user",
     };
-  } else currentUser = req.user;
+  } else {
+    currentUser = req.user;
+  }
     async.parallel(
       {
         user_followers(callback) {
@@ -25,9 +27,6 @@ exports.user_list_get = (req, res) => {
             callback
             );
         },
-      user_count(callback) {
-        User.countDocuments({}, callback);
-      },
       user_details(callback) {
         User.find({}, callback);
       },
@@ -69,6 +68,7 @@ exports.user_list_get = (req, res) => {
       },
     },
     (err, results) => {
+      console.log(results);
       res.render("userDashboard", {
         error: err,
         data: results,
@@ -77,6 +77,7 @@ exports.user_list_get = (req, res) => {
     }
   );
 };
+
 
 
 exports.friend_find_get = (req, res) => {

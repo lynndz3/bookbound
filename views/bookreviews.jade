@@ -19,7 +19,7 @@ block content
         button#addBook.btn.btn-secondary.btn-lg(type='button') ADD BOOK
   .row.table-row
     table#favoriteBooks.table.table-striped
-      thead
+     thead
        tr
         if currentUser.userId == id
           th(scope='col') Date Added
@@ -36,7 +36,8 @@ block content
           th(scope='col') Genre
           th(scope='col') Rating
           th(scope='col') Own copy
-      tbody
+     tbody
+     if data.book_detail
       each book in data.book_detail
        tr
         if !book.comments
@@ -383,7 +384,3 @@ block content
                 .modal-footer.add-book-modal-footer
                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
                     button#submit-book.btn.btn-primary(type='submit') Submit
-
-//- to remove certain columns from table on phone:
-//- .d-none.d-sm-table-cell
- 

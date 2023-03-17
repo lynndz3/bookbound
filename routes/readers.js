@@ -4,7 +4,9 @@ var router = express.Router();
 const user_controller = require("../controllers/userController");
 const book_controller = require("../controllers/bookController");
 
-/* GET users listing. */
+const async = require("async");
+
+
 router.get("/", user_controller.user_list_get);
 
 router.get("/follow", user_controller.friend_find_get);

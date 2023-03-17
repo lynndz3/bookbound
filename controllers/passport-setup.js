@@ -36,19 +36,27 @@ passport.use(
           console.log("user is: ", currentUser);
           done(null, currentUser);
         } else {
-          console.log(profile.emails[0].value);
-          // if not, create user in our db
-          new User({
+          //find the biggest UserId to incrememt by one and assign it to new user in database
+          User.find({}, {userId: 1, _id: 0}).limit(1).sort({userId: -1}).then((maxId) => {
+            if (maxId) {
+            console.log(maxId[0].userId + 1)
+            maxId = maxId[0].userId + 1;
+            console.log(maxId);
+            // if not, create user in our db
+            new User({
             googleId: profile.id,
             first_name: ((profile.name.givenName) ? profile.name.givenName : ''),
             last_name: ((profile.name.familyName) ? profile.name.familyName : ''),
             email: profile.emails[0].value,
-          })
+            userId: maxId
+              })
             .save()
             .then((user) => {
               console.log("created new user: ", user);
               done(null, user);
             });
+            }
+          });
         }
       });
     }
@@ -58,13 +66,3 @@ passport.use(
 
 
 
-// Followers.findOneAndUpdate({ user : user._id},
-//   { $set: {user: user._id} }, 
-//     {
-//       new: true,
-//       upsert: true
-//   })
-// } catch (error) {
-// res.render("error", { error: error });
-// }
-// }
